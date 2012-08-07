@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.1">
+    <Name>Znuny4OTRS-SortByLastContact</Name>
+    <Version>2.1.1</Version>
+    <Vendor>Znuny GmbH</Vendor>
+    <URL>http://znuny.com/</URL>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <Description Lang="en">Ticket sort order by last customer contact.</Description>
+    <Description Lang="de">Ticket Sortierung nach letztem Kundenkontakt.</Description>
+    <Framework>3.0.x</Framework>
+    <Filelist>
+        <File Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml" Permission="644"/>
+        <File Location="Kernel/System/Ticket/Event/TimeUpdate.pm" Permission="644"/>
+        <File Location="scripts/updatelastcustomercontact.pl" Permission="755"/>
+    </Filelist>
+    <DatabaseInstall>
+        <TableCreate Name="ticket_article_response">
+            <Column Name="ticket_id"               Required="true"  Type="BIGINT"/>
+            <Column Name="queue_id"                Required="true"  Type="INTEGER"/>
+            <Column Name="article_id"              Required="true"  Type="INTEGER"/>
+            <Column Name="last_contact_time"       Required="false" Type="DATE"/>
+            <Column Name="create_time"             Required="false" Type="DATE"/>
+            <Column Name="response_total_time"     Required="false" Type="INTEGER"/>
+            <Column Name="response_working_time"   Required="false" Type="INTEGER"/>
+            <Column Name="last_lock_time"          Required="false" Type="DATE"/>
+            <Column Name="handling_time"           Required="false" Type="INTEGER"/>
+        </TableCreate>
+        <IndexCreate Name="ticket_article_response">
+            <IndexColumn Name="ticket_id"/>
+            <IndexColumn Name="queue_id"/>
+            <IndexColumn Name="article_id"/>
+        </IndexCreate>
+    </DatabaseInstall>
+    <DatabaseUninstall>
+        <TableDrop Name="ticket_article_response"/>
+    </DatabaseUninstall>
+</otrs_package>
+
+
