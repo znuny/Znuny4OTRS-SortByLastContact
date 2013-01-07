@@ -15,7 +15,7 @@ Prerequisites
 
 Download
 ========
-For download see https://github.com/znuny/Znuny4OTRS-SortByLastContact/downloads/
+For download see http://znuny.com/d/
 
 Commercial Support
 ==================
