@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_config version="1.0" init="Config">
-    <ConfigItem Name="TicketFreeTimeKey1" Required="1" Valid="1">
-        <Description Lang="en">Define the key of TicketFreeTime field 1.</Description>
-        <Description Lang="de">Definition des Schluessels von TicketFreeTime Feld 1.</Description>
-        <Group>Ticket</Group>
-        <SubGroup>Core::TicketFreeTime</SubGroup>
-        <Setting>
-            <String>Last Contact</String>
-        </Setting>
-    </ConfigItem>
     <ConfigItem Name="Ticket::EventModulePost###SetLastCustomerContact" Required="0" Valid="1">
         <Description Lang="en">Ticket event module to update last customer contact timestamp after article create action.</Description>
         <Description Lang="de">Ticket Event Modul zum automatischen Setzen des Zeitstempels für den letzten Kunden-Kontakt nach Erstellung eines Artikels.</Description>
@@ -21,108 +12,19 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="TicketFreeTimeKey1" Required="1" Valid="1">
-        <Description Lang="en">Define the key of TicketFreeTime field 1.</Description>
-        <Description Lang="de">Definition des Schluessels von TicketFreeTime Feld 1.</Description>
-        <Group>Ticket</Group>
-        <SubGroup>Core::TicketFreeTime</SubGroup>
-        <Setting>
-            <String>Last Contact</String>
-        </Setting>
-    </ConfigItem>
-    <ConfigItem Name="Znuny4OTRSSortByLastContact::FreeTextUsed" Required="1" Valid="1">
-        <Description Lang="en">Define field used to store last customer contact direction.</Description>
-        <Description Lang="de">Definition des Felds, welches zum Speichern Kommunikationsrichtung des letzten Kunden-Kontakts benutzt werden soll.</Description>
-        <Group>Znuny4OTRSSortByLastContact</Group>
-        <SubGroup>Core::Ticket</SubGroup>
-        <Setting>
-            <Option SelectedID="16">
-                <Item Key="1">TicketFreeText1</Item>
-                <Item Key="2">TicketFreeText2</Item>
-                <Item Key="3">TicketFreeText3</Item>
-                <Item Key="4">TicketFreeText4</Item>
-                <Item Key="5">TicketFreeText5</Item>
-                <Item Key="6">TicketFreeText6</Item>
-                <Item Key="7">TicketFreeText7</Item>
-                <Item Key="8">TicketFreeText8</Item>
-                <Item Key="9">TicketFreeText9</Item>
-                <Item Key="10">TicketFreeText10</Item>
-                <Item Key="11">TicketFreeText11</Item>
-                <Item Key="12">TicketFreeText12</Item>
-                <Item Key="13">TicketFreeText13</Item>
-                <Item Key="14">TicketFreeText14</Item>
-                <Item Key="15">TicketFreeText15</Item>
-                <Item Key="16">TicketFreeText16</Item>
-            </Option>
-        </Setting>
-    </ConfigItem>
-    <ConfigItem Name="Znuny4OTRSSortByLastContact::FreeTimeUsed" Required="1" Valid="1">
-        <Description Lang="en">Define field used to store last customer contact timestamp.</Description>
-        <Description Lang="de">Definition des Felds, welches zum Speichern des Zeitstempels des letzten Kunden-Kontakts benutzt werden soll.</Description>
-        <Group>Znuny4OTRSSortByLastContact</Group>
-        <SubGroup>Core::Ticket</SubGroup>
-        <Setting>
-            <Option SelectedID="1">
-                <Item Key="1">TicketFreeTime1</Item>
-                <Item Key="2">TicketFreeTime2</Item>
-                <Item Key="3">TicketFreeTime3</Item>
-                <Item Key="4">TicketFreeTime4</Item>
-                <Item Key="5">TicketFreeTime5</Item>
-                <Item Key="6">TicketFreeTime6</Item>
-            </Option>
-        </Setting>
-    </ConfigItem>
     <ConfigItem Name="Ticket::Frontend::AgentTicketQueue###SortBy::Default" Required="1" Valid="1">
         <Description Lang="en">Default sort criteria for all queues displayed in the QueueView after sort by priority is done.</Description>
         <Description Lang="de">Standard Sortierkriterium für alle Queues innerhalb der Queue-Ansicht nachdem nach der Priorität sortiert wurde.</Description>
         <Group>Ticket</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewQueue</SubGroup>
         <Setting>
-            <Option SelectedID="TicketFreeTime1">
+            <Option SelectedID="DynamicField_TicketLastCustomerContactTime">
                 <Item Key="Age">Age</Item>
                 <Item Key="Ticket">Ticket</Item>
                 <Item Key="Subject">Subject</Item>
                 <Item Key="Queue">Queue</Item>
                 <Item Key="Priority">Priority</Item>
-                <Item Key="TicketEscalation">TicketEscalation</Item>
-                <Item Key="TicketFreeTime1">TicketFreeTime1</Item>
-                <Item Key="TicketFreeTime2">TicketFreeTime2</Item>
-                <Item Key="TicketFreeTime3">TicketFreeTime3</Item>
-                <Item Key="TicketFreeTime4">TicketFreeTime4</Item>
-                <Item Key="TicketFreeTime5">TicketFreeTime5</Item>
-                <Item Key="TicketFreeTime6">TicketFreeTime6</Item>
-                <Item Key="TicketFreeKey1">TicketFreeKey1</Item>
-                <Item Key="TicketFreeKey2">TicketFreeKey2</Item>
-                <Item Key="TicketFreeKey3">TicketFreeKey3</Item>
-                <Item Key="TicketFreeKey4">TicketFreeKey4</Item>
-                <Item Key="TicketFreeKey5">TicketFreeKey5</Item>
-                <Item Key="TicketFreeKey6">TicketFreeKey6</Item>
-                <Item Key="TicketFreeKey7">TicketFreeKey7</Item>
-                <Item Key="TicketFreeKey8">TicketFreeKey8</Item>
-                <Item Key="TicketFreeKey9">TicketFreeKey9</Item>
-                <Item Key="TicketFreeKey10">TicketFreeKey10</Item>
-                <Item Key="TicketFreeKey11">TicketFreeKey11</Item>
-                <Item Key="TicketFreeKey12">TicketFreeKey12</Item>
-                <Item Key="TicketFreeKey13">TicketFreeKey13</Item>
-                <Item Key="TicketFreeKey14">TicketFreeKey14</Item>
-                <Item Key="TicketFreeKey15">TicketFreeKey15</Item>
-                <Item Key="TicketFreeKey16">TicketFreeKey16</Item>
-                <Item Key="TicketFreeText1">TicketFreeText1</Item>
-                <Item Key="TicketFreeText2">TicketFreeText2</Item>
-                <Item Key="TicketFreeText3">TicketFreeText3</Item>
-                <Item Key="TicketFreeText4">TicketFreeText4</Item>
-                <Item Key="TicketFreeText5">TicketFreeText5</Item>
-                <Item Key="TicketFreeText6">TicketFreeText6</Item>
-                <Item Key="TicketFreeText7">TicketFreeText7</Item>
-                <Item Key="TicketFreeText8">TicketFreeText8</Item>
-                <Item Key="TicketFreeText9">TicketFreeText9</Item>
-                <Item Key="TicketFreeText10">TicketFreeText10</Item>
-                <Item Key="TicketFreeText11">TicketFreeText11</Item>
-                <Item Key="TicketFreeText12">TicketFreeText12</Item>
-                <Item Key="TicketFreeText13">TicketFreeText13</Item>
-                <Item Key="TicketFreeText14">TicketFreeText14</Item>
-                <Item Key="TicketFreeText15">TicketFreeText15</Item>
-                <Item Key="TicketFreeText16">TicketFreeText16</Item>
+                <Item Key="DynamicField_TicketLastCustomerContactTime">DynamicField_TicketLastCustomerContactTime</Item>
             </Option>
         </Setting>
     </ConfigItem>
@@ -132,51 +34,13 @@
         <Group>Ticket</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewStatus</SubGroup>
         <Setting>
-            <Option SelectedID="TicketFreeTime1">
+            <Option SelectedID="DynamicField_TicketLastCustomerContactTime">
                 <Item Key="Age">Age</Item>
                 <Item Key="Ticket">Ticket</Item>
                 <Item Key="Subject">Subject</Item>
                 <Item Key="Queue">Queue</Item>
                 <Item Key="Priority">Priority</Item>
-                <Item Key="TicketEscalation">TicketEscalation</Item>
-                <Item Key="TicketFreeTime1">TicketFreeTime1</Item>
-                <Item Key="TicketFreeTime2">TicketFreeTime2</Item>
-                <Item Key="TicketFreeTime3">TicketFreeTime3</Item>
-                <Item Key="TicketFreeTime4">TicketFreeTime4</Item>
-                <Item Key="TicketFreeTime5">TicketFreeTime5</Item>
-                <Item Key="TicketFreeTime6">TicketFreeTime6</Item>
-                <Item Key="TicketFreeKey1">TicketFreeKey1</Item>
-                <Item Key="TicketFreeKey2">TicketFreeKey2</Item>
-                <Item Key="TicketFreeKey3">TicketFreeKey3</Item>
-                <Item Key="TicketFreeKey4">TicketFreeKey4</Item>
-                <Item Key="TicketFreeKey5">TicketFreeKey5</Item>
-                <Item Key="TicketFreeKey6">TicketFreeKey6</Item>
-                <Item Key="TicketFreeKey7">TicketFreeKey7</Item>
-                <Item Key="TicketFreeKey8">TicketFreeKey8</Item>
-                <Item Key="TicketFreeKey9">TicketFreeKey9</Item>
-                <Item Key="TicketFreeKey10">TicketFreeKey10</Item>
-                <Item Key="TicketFreeKey11">TicketFreeKey11</Item>
-                <Item Key="TicketFreeKey12">TicketFreeKey12</Item>
-                <Item Key="TicketFreeKey13">TicketFreeKey13</Item>
-                <Item Key="TicketFreeKey14">TicketFreeKey14</Item>
-                <Item Key="TicketFreeKey15">TicketFreeKey15</Item>
-                <Item Key="TicketFreeKey16">TicketFreeKey16</Item>
-                <Item Key="TicketFreeText1">TicketFreeText1</Item>
-                <Item Key="TicketFreeText2">TicketFreeText2</Item>
-                <Item Key="TicketFreeText3">TicketFreeText3</Item>
-                <Item Key="TicketFreeText4">TicketFreeText4</Item>
-                <Item Key="TicketFreeText5">TicketFreeText5</Item>
-                <Item Key="TicketFreeText6">TicketFreeText6</Item>
-                <Item Key="TicketFreeText7">TicketFreeText7</Item>
-                <Item Key="TicketFreeText8">TicketFreeText8</Item>
-                <Item Key="TicketFreeText9">TicketFreeText9</Item>
-                <Item Key="TicketFreeText10">TicketFreeText10</Item>
-                <Item Key="TicketFreeText11">TicketFreeText11</Item>
-                <Item Key="TicketFreeText12">TicketFreeText12</Item>
-                <Item Key="TicketFreeText13">TicketFreeText13</Item>
-                <Item Key="TicketFreeText14">TicketFreeText14</Item>
-                <Item Key="TicketFreeText15">TicketFreeText15</Item>
-                <Item Key="TicketFreeText16">TicketFreeText16</Item>
+                <Item Key="DynamicField_TicketLastCustomerContactTime">DynamicField_TicketLastCustomerContactTime</Item>
             </Option>
         </Setting>
     </ConfigItem>
@@ -196,51 +60,13 @@
         <Group>Ticket</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewMailbox</SubGroup>
         <Setting>
-            <Option SelectedID="TicketFreeTime1">
+            <Option SelectedID="DynamicField_TicketLastCustomerContactTime">
                 <Item Key="Age">Age</Item>
                 <Item Key="Ticket">Ticket</Item>
                 <Item Key="Subject">Subject</Item>
                 <Item Key="Queue">Queue</Item>
                 <Item Key="Priority">Priority</Item>
-                <Item Key="EscalationTime">EscalationTime</Item>
-                <Item Key="TicketFreeTime1">TicketFreeTime1</Item>
-                <Item Key="TicketFreeTime2">TicketFreeTime2</Item>
-                <Item Key="TicketFreeTime3">TicketFreeTime3</Item>
-                <Item Key="TicketFreeTime4">TicketFreeTime4</Item>
-                <Item Key="TicketFreeTime5">TicketFreeTime5</Item>
-                <Item Key="TicketFreeTime6">TicketFreeTime6</Item>
-                <Item Key="TicketFreeKey1">TicketFreeKey1</Item>
-                <Item Key="TicketFreeKey2">TicketFreeKey2</Item>
-                <Item Key="TicketFreeKey3">TicketFreeKey3</Item>
-                <Item Key="TicketFreeKey4">TicketFreeKey4</Item>
-                <Item Key="TicketFreeKey5">TicketFreeKey5</Item>
-                <Item Key="TicketFreeKey6">TicketFreeKey6</Item>
-                <Item Key="TicketFreeKey7">TicketFreeKey7</Item>
-                <Item Key="TicketFreeKey8">TicketFreeKey8</Item>
-                <Item Key="TicketFreeKey9">TicketFreeKey9</Item>
-                <Item Key="TicketFreeKey10">TicketFreeKey10</Item>
-                <Item Key="TicketFreeKey11">TicketFreeKey11</Item>
-                <Item Key="TicketFreeKey12">TicketFreeKey12</Item>
-                <Item Key="TicketFreeKey13">TicketFreeKey13</Item>
-                <Item Key="TicketFreeKey14">TicketFreeKey14</Item>
-                <Item Key="TicketFreeKey15">TicketFreeKey15</Item>
-                <Item Key="TicketFreeKey16">TicketFreeKey16</Item>
-                <Item Key="TicketFreeText1">TicketFreeText1</Item>
-                <Item Key="TicketFreeText2">TicketFreeText2</Item>
-                <Item Key="TicketFreeText3">TicketFreeText3</Item>
-                <Item Key="TicketFreeText4">TicketFreeText4</Item>
-                <Item Key="TicketFreeText5">TicketFreeText5</Item>
-                <Item Key="TicketFreeText6">TicketFreeText6</Item>
-                <Item Key="TicketFreeText7">TicketFreeText7</Item>
-                <Item Key="TicketFreeText8">TicketFreeText8</Item>
-                <Item Key="TicketFreeText9">TicketFreeText9</Item>
-                <Item Key="TicketFreeText10">TicketFreeText10</Item>
-                <Item Key="TicketFreeText11">TicketFreeText11</Item>
-                <Item Key="TicketFreeText12">TicketFreeText12</Item>
-                <Item Key="TicketFreeText13">TicketFreeText13</Item>
-                <Item Key="TicketFreeText14">TicketFreeText14</Item>
-                <Item Key="TicketFreeText15">TicketFreeText15</Item>
-                <Item Key="TicketFreeText16">TicketFreeText16</Item>
+                <Item Key="DynamicField_TicketLastCustomerContactTime">DynamicField_TicketLastCustomerContactTime</Item>
             </Option>
         </Setting>
     </ConfigItem>

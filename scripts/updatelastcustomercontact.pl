@@ -1,28 +1,9 @@
 #!/usr/bin/perl -w
 # --
 # updatelastcustomercontact.pl - update all tickets with last customer contact
-# Copyright (C) 2003-2009 OTRS AG, http://otrs.com/
-# Copyright (C) 2012 Znuny GmbH, http://znuny.com/
-# --
-# $Id: $ 
-# --
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU AFFERO General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-# or see http://www.gnu.org/licenses/agpl.txt.
+# Copyright (C) 2013 Znuny GmbH, http://znuny.com/
 # --
 
-# use ../ as lib location
 use File::Basename;
 use FindBin qw($RealBin);
 use lib dirname($RealBin);
@@ -38,6 +19,7 @@ use Kernel::System::Encode;
 use Kernel::System::Time;
 use Kernel::System::DB;
 use Kernel::System::Ticket;
+use Kernel::System::DynamicField;
 
 # common objects
 my %CommonObject = ();
@@ -51,6 +33,7 @@ $CommonObject{EncodeObject} = Kernel::System::Encode->new(%CommonObject);
 $CommonObject{TimeObject}   = Kernel::System::Time->new(%CommonObject);
 $CommonObject{DBObject}     = Kernel::System::DB->new(%CommonObject);
 $CommonObject{TicketObject} = Kernel::System::Ticket->new(%CommonObject);
+$CommonObject{DynamicFieldObject} = Kernel::System::DynamicField->new( %CommonObject );
 
 # get all open tickets
 my $SQL = "SELECT t.id FROM ticket t, ticket_state ts, ticket_state_type tst WHERE " .
@@ -63,11 +46,11 @@ while ( my @Row = $CommonObject{DBObject}->FetchrowArray() ) {
 }
 exit(0) if !@TicketIDs;
 
-my $FieldText = $CommonObject{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTextUsed');
-exit(0) if !$FieldText;
+#my $FieldText = $CommonObject{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTextUsed');
+#exit(0) if !$FieldText;
 
-my $Field = $CommonObject{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTimeUsed');
-exit(0) if !$Field;
+#my $Field = $CommonObject{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTimeUsed');
+#exit(0) if !$Field;
 
 # ticket loop
 TICKETS:
@@ -90,27 +73,26 @@ for my $TicketID ( sort { $a <=> $b } @TicketIDs ) {
             ),
         );
 
-        # remember sender type
-        $CommonObject{TicketObject}->TicketFreeTextSet(
-            Counter  => $FieldText,
-            Key      => 'Last Sender',
-            Value    => $Article{SenderType},
-            TicketID => $TicketID,
-            UserID   => 1,
+        my $DynamicFieldConfigDirection = $CommonObject{DynamicFieldObject}->DynamicFieldGet(
+            Name => "TicketLastCustomerContactDirection",
+        );        
+
+        my $DynamicFieldConfigTime = $CommonObject{DynamicFieldObject}->DynamicFieldGet(
+            Name => "TicketLastCustomerContactTime",
         );
 
-        # set last sender time
-        $CommonObject{TicketObject}->TicketFreeTimeSet(
-            Prefix                               => 'TicketFreeTime',
-            TicketID                             => $TicketID,
-            Counter                              => $Field,
-            UserID                               => 1,
-            'TicketFreeTime' . $Field . 'Year'   => $Year,
-            'TicketFreeTime' . $Field . 'Month'  => $Month,
-            'TicketFreeTime' . $Field . 'Day'    => $Day,
-            'TicketFreeTime' . $Field . 'Hour'   => $Hour,
-            'TicketFreeTime' . $Field . 'Minute' => $Min,
-            'TicketFreeTime' . $Field . 'Second' => $Sec,
+        my $Direction = $CommonObject{DynamicFieldBackendObject}->ValueSet(
+            DynamicFieldConfig => $DynamicFieldConfigDirection,
+            ObjectID           => $TicketID,
+            Value              => $Article{SenderType},
+            UserID             => 1,
+        );        
+
+        my $Time = $CommonObject{DynamicFieldBackendObject}->ValueSet(
+            DynamicFieldConfig => $DynamicFieldConfigTime,
+            ObjectID           => $TicketID,
+            Value              => $Article{Created},
+            UserID             => 1,
         );
 
         last ARTICLES;

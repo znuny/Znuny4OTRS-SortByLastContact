@@ -1,22 +1,14 @@
 # --
 # Kernel/System/Ticket/Event/TimeUpdate.pm - time update event module
-# Copyright (C) 2003-2010 OTRS AG, http://otrs.com/
-# Copyright (C) 2012 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2013 Znuny GmbH, http://znuny.com/
 # --
-# $Id: $
-# --
-# This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (AGPL). If you
-# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
-# --
+
 
 package Kernel::System::Ticket::Event::TimeUpdate;
 
 use strict;
 use warnings;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+use Kernel::System::DynamicField::Backend;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -27,7 +19,7 @@ sub new {
 
     # get needed objects
     for my $Object (
-        qw(MainObject EncodeObject ConfigObject TicketObject LogObject TimeObject DBObject StateObject)
+        qw(MainObject EncodeObject ConfigObject DynamicFieldObject DynamicFieldBackendObject TicketObject LogObject TimeObject DBObject StateObject)
         )
     {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
@@ -65,13 +57,10 @@ sub Run {
     return 1 if $Article{SenderType} !~ /^(customer|agent)/;
     return 1 if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
 
-    my $FieldText = $Self->{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTextUsed');
-
-    return 1 if !$FieldText;
-
-    my $FieldTime = $Self->{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTimeUsed');
-
-    return 1 if !$FieldTime;
+    #my $FieldText = $Self->{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTextUsed');
+    #return 1 if !$FieldText;
+    #my $FieldTime = $Self->{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTimeUsed');
+    #return 1 if !$FieldTime;
 
     # get the current ticket
     my %Ticket = $Self->{TicketObject}->TicketGet(
@@ -116,26 +105,17 @@ sub Run {
         );
     }
 
-    my $LastContactTime   = $Article{ 'TicketFreeTime' . $FieldTime } || '';
-    my $LastSender        = $Article{ 'TicketFreeText' . $FieldText } || '';
+    my $LastContactTime   = $Ticket{ 'TicketLastCustomerContactTime' } || '';
+    my $LastSender        = $Ticket{ 'TicketLastCustomerContactDirection' } || '';
     my $NewSender         = $Article{SenderType};
     my $StateType         = $Ticket{StateType};
-    my $PreviousStateType = $PreviousState{TypeName} || '';
+    my $PreviousStateType = $PreviousState{TypeName}                  || '';
 
     return 1
         if $LastSender eq 'customer'
-            && $NewSender eq 'customer'
-            && $StateType eq 'open'
-            && $PreviousStateType ne 'closed';
-
-    # remember sender type
-    $Self->{TicketObject}->TicketFreeTextSet(
-        Counter  => $FieldText,
-        Key      => 'Last Sender',
-        Value    => $Article{SenderType},
-        TicketID => $Param{TicketID},
-        UserID   => 1,
-    );
+        && $NewSender  eq 'customer'
+        && $StateType  eq 'open'
+        && $PreviousStateType ne 'closed';
 
     # remember sender time stamp
     my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = $Self->{TimeObject}->SystemTime2Date(
@@ -143,17 +123,28 @@ sub Run {
             String => $Article{Created},
         ),
     );
-    $Self->{TicketObject}->TicketFreeTimeSet(
-        Prefix                                   => 'TicketFreeTime',
-        TicketID                                 => $Param{TicketID},
-        Counter                                  => $FieldTime,
-        UserID                                   => 1,
-        'TicketFreeTime' . $FieldTime . 'Year'   => $Year,
-        'TicketFreeTime' . $FieldTime . 'Month'  => $Month,
-        'TicketFreeTime' . $FieldTime . 'Day'    => $Day,
-        'TicketFreeTime' . $FieldTime . 'Hour'   => $Hour,
-        'TicketFreeTime' . $FieldTime . 'Minute' => $Min,
-        'TicketFreeTime' . $FieldTime . 'Second' => $Sec,
+
+    # remember sender type
+    my $DynamicFieldConfigDirection = $Self->{DynamicFieldObject}->DynamicFieldGet(
+        Name => "TicketLastCustomerContactDirection",
+    );
+
+    my $DynamicFieldConfigTime = $Self->{DynamicFieldObject}->DynamicFieldGet(
+        Name => "TicketLastCustomerContactTime",
+    );
+
+    my $Direction = $Self->{DynamicFieldBackendObject}->ValueSet(
+        DynamicFieldConfig => $DynamicFieldConfigDirection,
+        ObjectID           => $Param{TicketID},
+        Value              => $Article{SenderType},
+        UserID             => 1,
+    );
+
+    my $Time = $Self->{DynamicFieldBackendObject}->ValueSet(
+        DynamicFieldConfig => $DynamicFieldConfigTime,
+        ObjectID           => $Param{TicketID},
+        Value              => $Article{Created},
+        UserID             => 1,
     );
 
     return 1;
