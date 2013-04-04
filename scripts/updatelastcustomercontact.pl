@@ -20,6 +20,7 @@ use Kernel::System::Time;
 use Kernel::System::DB;
 use Kernel::System::Ticket;
 use Kernel::System::DynamicField;
+use Kernel::System::DynamicField::Backend;
 
 # common objects
 my %CommonObject = ();
@@ -34,6 +35,7 @@ $CommonObject{TimeObject}   = Kernel::System::Time->new(%CommonObject);
 $CommonObject{DBObject}     = Kernel::System::DB->new(%CommonObject);
 $CommonObject{TicketObject} = Kernel::System::Ticket->new(%CommonObject);
 $CommonObject{DynamicFieldObject} = Kernel::System::DynamicField->new( %CommonObject );
+$CommonObject{DynamicFieldBackendObject} = Kernel::System::DynamicField::Backend->new( %CommonObject );
 
 
 # get all open tickets
