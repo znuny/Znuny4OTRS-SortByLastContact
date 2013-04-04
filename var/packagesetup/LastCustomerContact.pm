@@ -22,7 +22,7 @@ sub new {
 
     # check needed objects
     for my $Object (
-        qw( EncodeObject LogObject MainObject TimeObject )
+        qw( EncodeObject LogObject MainObject TimeObject DBObject ConfigObject )
         )
     {
         $Self->{$Object} = $Param{$Object} ||
