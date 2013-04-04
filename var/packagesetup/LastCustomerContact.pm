@@ -12,6 +12,7 @@ use Kernel::Config;
 use Kernel::System::SysConfig;
 use Kernel::System::Valid;
 use Kernel::System::DynamicField;
+use Kernel::System::VariableCheck qw(:all);
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -50,20 +51,12 @@ sub CodeInstall {
     my ( $Self, %Param ) = @_;
 
     $Self->_CreateDynamicFields();
-            $Self->{LogObject}->Log(
-                Priority => 'error',
-                Message  => "_CreateDynamicFields started",
-            );
+
     return 1;
 }
 
 sub _CreateDynamicFields {
     my ( $Self, %Param ) = @_;
-
-            $Self->{LogObject}->Log(
-                Priority => 'error',
-                Message  => "_CreateDynamicFields started",
-            );
 
     my $ValidID = $Self->{ValidObject}->ValidLookup(
         Valid => 'valid',
@@ -85,10 +78,7 @@ sub _CreateDynamicFields {
     if (@DynamicfieldOrderList) {
         $NextOrderNumber = $DynamicfieldOrderList[-1] + 1;
     }
-            $Self->{LogObject}->Log(
-                Priority => 'error',
-                Message  => "_CreateDynamicFields order number ",
-            );
+
     # create dynamic fields
     my $DynamicFieldConfigDirection = $Self->{DynamicFieldObject}->DynamicFieldGet(
         Name => "TicketLastCustomerContactDirection",
@@ -98,68 +88,51 @@ sub _CreateDynamicFields {
         Name => "TicketLastCustomerContactTime",
     );
 
-    #Check if field exists
-    if ( !$DynamicFieldConfigTime ) {
-        my $TicketLastCustomerContactTimeID = $Self->{DynamicFieldObject}->DynamicFieldAdd(
-            Name       => 'TicketLastCustomerContactTime',
-            Label      => 'TicketLastCustomerContactTime',
-            FieldOrder => $NextOrderNumber,
-            FieldType  => 'DateTime',
-            ObjectType => 'Ticket',
-            Config     => {},
-            ValidID    => $ValidID,
-            UserID     => 1,
-        );
+    my $TicketLastCustomerContactTimeID = $Self->{DynamicFieldObject}->DynamicFieldAdd(
+        Name       => 'TicketLastCustomerContactTime',
+        Label      => 'TicketLastCustomerContactTime',
+        FieldOrder => $NextOrderNumber,
+        FieldType  => 'DateTime',
+        ObjectType => 'Ticket',
+        Config     => {},
+        ValidID    => $ValidID,
+        UserID     => 1,
+    );
 
-        if ($TicketLastCustomerContactTimeID) {
-            $NextOrderNumber++;
+    if ($TicketLastCustomerContactTimeID) {
+        $NextOrderNumber++;
 
-        }
-        else {
-            $Self->{LogObject}->Log(
-                Priority => 'info',
-                Message  => "Error while creating field TicketLastCustomerContactTime. "
-            );
-            return 0;
-        }
     }
     else {
         $Self->{LogObject}->Log(
             Priority => 'info',
-            Message  => "Field TicketLastCustomerContactTime already exists. "
+            Message  => "Error while creating field TicketLastCustomerContactTime. "
         );
+        return 0;
     }
 
-    if ( !$DynamicFieldConfigTime ) {
-        my $TicketLastCustomerContactTimeID = $Self->{DynamicFieldObject}->DynamicFieldAdd(
-            Name       => 'TicketLastCustomerContactDirection',
-            Label      => 'TicketLastCustomerContactDirection',
-            FieldOrder => $NextOrderNumber,
-            FieldType  => 'Text',
-            ObjectType => 'Ticket',
-            Config     => {},
-            ValidID    => $ValidID,
-            UserID     => 1,
-        );
-        if ($TicketLastCustomerContactTimeID) {
-            $NextOrderNumber++;
 
-        }
-        else {
-            $Self->{LogObject}->Log(
-                Priority => 'info',
-                Message  => "Error while creating field TicketLastCustomerContactDirection. "
-            );
-            return 0;
-        }
+    my $TicketLastCustomerContactTimeID = $Self->{DynamicFieldObject}->DynamicFieldAdd(
+        Name       => 'TicketLastCustomerContactDirection',
+        Label      => 'TicketLastCustomerContactDirection',
+        FieldOrder => $NextOrderNumber,
+        FieldType  => 'Text',
+        ObjectType => 'Ticket',
+        Config     => {},
+        ValidID    => $ValidID,
+        UserID     => 1,
+    );
+
+    if ($TicketLastCustomerContactTimeID) {
+        $NextOrderNumber++;
     }
     else {
         $Self->{LogObject}->Log(
             Priority => 'info',
-            Message  => "Field TicketLastCustomerContactDirection already exists. "
+            Message  => "Error while creating field TicketLastCustomerContactDirection. "
         );
+        return 0;
     }
-
     return 1;
 }
 
