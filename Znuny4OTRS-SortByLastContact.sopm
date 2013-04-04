@@ -52,7 +52,7 @@
   
       ]]>
     </CodeInstall>
-    <CodeReInstall Type="post"><![CDATA[
+    <CodeReinstall Type="post"><![CDATA[
   
           # define function name
           my $FunctionName = 'CodeInstall';
@@ -85,9 +85,8 @@
                   );
               }
           }
-  
       ]]>
-    </CodeReInstall>
+    </CodeReinstall>
 </otrs_package>
 
 
