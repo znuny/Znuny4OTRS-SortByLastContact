@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.1">
     <Name>Znuny4OTRS-SortByLastContact</Name>
-    <Version>3.1.x</Version>
-    <Version>3.2.x</Version>
+    <Version>3.0.0</Version>
+    <Framework>3.1.x</Framework>
+    <Framework>3.2.x</Framework>
     <Vendor>Znuny GmbH</Vendor>
     <URL>http://znuny.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
@@ -13,7 +14,80 @@
         <File Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml" Permission="644"/>
         <File Location="Kernel/System/Ticket/Event/TimeUpdate.pm" Permission="644"/>
         <File Location="scripts/updatelastcustomercontact.pl" Permission="755"/>
+        <File Location="var/packagesetup/LastCustomerContact.pm" Permission="644"/>
     </Filelist>
+    <CodeInstall Type="post"><![CDATA[
+  
+          # define function name
+          my $FunctionName = 'CodeInstall';
+  
+          # create the package name
+          my $CodeModule = 'var::packagesetup::LastCustomerContact';
+  
+          # load the module
+          if ( $Self->{MainObject}->Require($CodeModule) ) {
+  
+              # create new instance
+              my $CodeObject = $CodeModule->new( %{$Self} );
+  
+              if ($CodeObject) {
+  
+                  # start method
+                  if ( !$CodeObject->$FunctionName(%{$Self}) ) {
+                      $Self->{LogObject}->Log(
+                          Priority => 'error',
+                          Message  => "Could not call method $FunctionName() on $CodeModule.pm."
+                      );
+                  }
+              }
+  
+              # error handling
+              else {
+                  $Self->{LogObject}->Log(
+                      Priority => 'error',
+                      Message  => "Could not call method new() on $CodeModule.pm."
+                  );
+              }
+          }
+  
+      ]]>
+    </CodeInstall>
+    <CodeReInstall Type="post"><![CDATA[
+  
+          # define function name
+          my $FunctionName = 'CodeInstall';
+  
+          # create the package name
+          my $CodeModule = 'var::packagesetup::LastCustomerContact';
+  
+          # load the module
+          if ( $Self->{MainObject}->Require($CodeModule) ) {
+  
+              # create new instance
+              my $CodeObject = $CodeModule->new( %{$Self} );
+  
+              if ($CodeObject) {
+  
+                  # start method
+                  if ( !$CodeObject->$FunctionName(%{$Self}) ) {
+                      $Self->{LogObject}->Log(
+                          Priority => 'error',
+                          Message  => "Could not call method $FunctionName() on $CodeModule.pm."
+                      );
+                  }
+              }
+  
+              # error handling
+              else {
+                  $Self->{LogObject}->Log(
+                      Priority => 'error',
+                      Message  => "Could not call method new() on $CodeModule.pm."
+                  );
+              }
+          }
+  
+      ]]>
+    </CodeReInstall>
 </otrs_package>
 
 

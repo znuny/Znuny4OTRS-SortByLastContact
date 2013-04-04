@@ -35,6 +35,7 @@ $CommonObject{DBObject}     = Kernel::System::DB->new(%CommonObject);
 $CommonObject{TicketObject} = Kernel::System::Ticket->new(%CommonObject);
 $CommonObject{DynamicFieldObject} = Kernel::System::DynamicField->new( %CommonObject );
 
+
 # get all open tickets
 my $SQL = "SELECT t.id FROM ticket t, ticket_state ts, ticket_state_type tst WHERE " .
     " t.ticket_state_id = ts.id AND ts.type_id = tst.id AND tst.name IN ('new', 'open', 'pending reminder', 'pending auto') ";
@@ -46,11 +47,16 @@ while ( my @Row = $CommonObject{DBObject}->FetchrowArray() ) {
 }
 exit(0) if !@TicketIDs;
 
-#my $FieldText = $CommonObject{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTextUsed');
-#exit(0) if !$FieldText;
+my $DynamicFieldConfigDirection = $CommonObject{DynamicFieldObject}->DynamicFieldGet(
+    Name => "TicketLastCustomerContactDirection",
+);        
+exit(0) if !$DynamicFieldConfigDirection;
 
-#my $Field = $CommonObject{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTimeUsed');
-#exit(0) if !$Field;
+my $DynamicFieldConfigTime = $CommonObject{DynamicFieldObject}->DynamicFieldGet(
+    Name => "TicketLastCustomerContactTime",
+);
+exit(0) if !$DynamicFieldConfigTime;
+
 
 # ticket loop
 TICKETS:
@@ -71,14 +77,6 @@ for my $TicketID ( sort { $a <=> $b } @TicketIDs ) {
             SystemTime => $CommonObject{TimeObject}->TimeStamp2SystemTime(
                 String => $Article{Created},
             ),
-        );
-
-        my $DynamicFieldConfigDirection = $CommonObject{DynamicFieldObject}->DynamicFieldGet(
-            Name => "TicketLastCustomerContactDirection",
-        );        
-
-        my $DynamicFieldConfigTime = $CommonObject{DynamicFieldObject}->DynamicFieldGet(
-            Name => "TicketLastCustomerContactTime",
         );
 
         my $Direction = $CommonObject{DynamicFieldBackendObject}->ValueSet(

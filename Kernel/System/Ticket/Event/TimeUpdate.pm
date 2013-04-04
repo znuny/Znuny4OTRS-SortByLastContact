@@ -19,7 +19,7 @@ sub new {
 
     # get needed objects
     for my $Object (
-        qw(MainObject EncodeObject ConfigObject DynamicFieldObject DynamicFieldBackendObject TicketObject LogObject TimeObject DBObject StateObject)
+        qw(MainObject EncodeObject DynamicFieldObject DynamicFieldBackendObject TicketObject LogObject TimeObject)
         )
     {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
@@ -57,11 +57,17 @@ sub Run {
     return 1 if $Article{SenderType} !~ /^(customer|agent)/;
     return 1 if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
 
-    #my $FieldText = $Self->{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTextUsed');
-    #return 1 if !$FieldText;
-    #my $FieldTime = $Self->{ConfigObject}->Get('Znuny4OTRSSortByLastContact::FreeTimeUsed');
-    #return 1 if !$FieldTime;
+    # remember sender type
+    my $DynamicFieldConfigDirection = $Self->{DynamicFieldObject}->DynamicFieldGet(
+        Name => "TicketLastCustomerContactDirection",
+    );
+    return 1 if !$DynamicFieldConfigDirection;
 
+    my $DynamicFieldConfigTime = $Self->{DynamicFieldObject}->DynamicFieldGet(
+        Name => "TicketLastCustomerContactTime",
+    );
+    return 1 if !$DynamicFieldConfigTime;
+    
     # get the current ticket
     my %Ticket = $Self->{TicketObject}->TicketGet(
         TicketID => $Param{TicketID},
@@ -122,15 +128,6 @@ sub Run {
         SystemTime => $Self->{TimeObject}->TimeStamp2SystemTime(
             String => $Article{Created},
         ),
-    );
-
-    # remember sender type
-    my $DynamicFieldConfigDirection = $Self->{DynamicFieldObject}->DynamicFieldGet(
-        Name => "TicketLastCustomerContactDirection",
-    );
-
-    my $DynamicFieldConfigTime = $Self->{DynamicFieldObject}->DynamicFieldGet(
-        Name => "TicketLastCustomerContactTime",
     );
 
     my $Direction = $Self->{DynamicFieldBackendObject}->ValueSet(
