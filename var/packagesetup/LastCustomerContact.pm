@@ -103,16 +103,9 @@ sub _CreateDynamicFields {
         $NextOrderNumber++;
 
     }
-    else {
-        $Self->{LogObject}->Log(
-            Priority => 'info',
-            Message  => "Error while creating field TicketLastCustomerContactTime. "
-        );
-        return 0;
-    }
 
 
-    my $TicketLastCustomerContactTimeID = $Self->{DynamicFieldObject}->DynamicFieldAdd(
+    my $TicketLastCustomerContactDirection = $Self->{DynamicFieldObject}->DynamicFieldAdd(
         Name       => 'TicketLastCustomerContactDirection',
         Label      => 'TicketLastCustomerContactDirection',
         FieldOrder => $NextOrderNumber,
@@ -123,15 +116,8 @@ sub _CreateDynamicFields {
         UserID     => 1,
     );
 
-    if ($TicketLastCustomerContactTimeID) {
+    if ($TicketLastCustomerContactDirection) {
         $NextOrderNumber++;
-    }
-    else {
-        $Self->{LogObject}->Log(
-            Priority => 'info',
-            Message  => "Error while creating field TicketLastCustomerContactDirection. "
-        );
-        return 0;
     }
     return 1;
 }
