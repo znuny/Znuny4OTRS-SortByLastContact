@@ -94,7 +94,13 @@ sub _CreateDynamicFields {
         FieldOrder => $NextOrderNumber,
         FieldType  => 'DateTime',
         ObjectType => 'Ticket',
-        Config     => {},
+        Config     => {
+            'DefaultValue' => 0,
+            'Link' => '',
+            'YearsInFuture' => 5,
+            'YearsInPast' => 5,
+            'YearsPeriod' => 0,
+            },
         ValidID    => $ValidID,
         UserID     => 1,
     );
@@ -111,7 +117,10 @@ sub _CreateDynamicFields {
         FieldOrder => $NextOrderNumber,
         FieldType  => 'Text',
         ObjectType => 'Ticket',
-        Config     => {},
+        Config     => {
+                          'DefaultValue' => '',
+                          'Link' => ''
+                      }  ,
         ValidID    => $ValidID,
         UserID     => 1,
     );
