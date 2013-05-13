@@ -32,18 +32,24 @@ sub Run {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for (qw(TicketID Event Config)) {
+    for (qw(Data Event Config)) {
         if ( !$Param{$_} ) {
             $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
             return;
         }
+    }
+    for (qw(TicketID)) {
+           if ( !$Param{Data}->{$_} ) {
+               $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_ in Data!" );
+               return;
+           }
     }
 
     return 1 if $Param{Event} ne 'ArticleCreate';
 
     # get article index
     my @ArticleIndex = $Self->{TicketObject}->ArticleIndex(
-        TicketID => $Param{TicketID},
+        TicketID => $Param{Data}->{TicketID},
     );
 
     return 1 if !@ArticleIndex;
@@ -70,7 +76,7 @@ sub Run {
     
     # get the current ticket
     my %Ticket = $Self->{TicketObject}->TicketGet(
-        TicketID => $Param{TicketID},
+        TicketID => $Param{Data}->{TicketID},
         UserID   => 1,
     );
 
@@ -78,7 +84,7 @@ sub Run {
 
     # get the full ticket history of the current ticket
     my @TicketHistory = $Self->{TicketObject}->HistoryGet(
-        TicketID => $Param{TicketID},
+        TicketID => $Param{Data}->{TicketID},
         UserID   => 1,
     );
 
@@ -132,14 +138,14 @@ sub Run {
 
     my $Direction = $Self->{DynamicFieldBackendObject}->ValueSet(
         DynamicFieldConfig => $DynamicFieldConfigDirection,
-        ObjectID           => $Param{TicketID},
+        ObjectID           => $Param{Data}->{TicketID},
         Value              => $Article{SenderType},
         UserID             => 1,
     );
 
     my $Time = $Self->{DynamicFieldBackendObject}->ValueSet(
         DynamicFieldConfig => $DynamicFieldConfigTime,
-        ObjectID           => $Param{TicketID},
+        ObjectID           => $Param{Data}->{TicketID},
         Value              => $Article{Created},
         UserID             => 1,
     );
