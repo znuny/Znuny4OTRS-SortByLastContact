@@ -19,7 +19,7 @@ sub new {
 
     # get needed objects
     for my $Object (
-        qw(MainObject EncodeObject DynamicFieldObject DynamicFieldBackendObject TicketObject LogObject TimeObject DBObject ConfigObject)
+        qw(MainObject EncodeObject DynamicFieldObject DynamicFieldBackendObject TicketObject LogObject TimeObject DBObject ConfigObject StateObject)
         )
     {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
