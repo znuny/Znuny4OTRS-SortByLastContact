@@ -11,6 +11,8 @@ This field is set as Default value in:
 * Frontend::Agent::Ticket::ViewMailbox
 * Frontend::Agent::Ticket::ViewStatus
 
+Many thanks to Myhammer AG, which made this possible.
+
 Installation
 ============
 Download the package and install it via admin interface -> package manager.
@@ -29,6 +31,7 @@ https://github.com/znuny/Znuny4OTRS-SortByLastContact/tree/master_30
 Commercial Support
 ==================
 For this extention and for OTRS in gerneral visit http://znuny.com. Looking forward to hear from you!
+
 
 Enjoy!
 
