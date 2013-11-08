@@ -38,13 +38,8 @@ sub Run {
             return;
         }
     }
-    for (qw(TicketID)) {
-           if ( !$Param{Data}->{$_} ) {
-               $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_ in Data!" );
-               return;
-           }
-    }
-
+    
+    return 1 if !$Param{Data}->{TicketID};
     return 1 if $Param{Event} ne 'ArticleCreate';
 
     # get article index
