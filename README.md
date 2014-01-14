@@ -3,14 +3,14 @@
 Znuny4OTRS-SortByLastContact
 ====================
 
-Sort QueueView, StatusView and LockedView by last contact. 
+Sort QueueView, StatusView and LockedView by last contact.
 
 Just install the package and the feature will be enabled automatically.
 
 **Feature List**
 
-The installer creates a DyncamicFiled called 'TicketLastCustomerContactTime' to store the values. 
-To update the last contact time (TicketLastCustomerContactTime) for all existing ticket, execute "scripts/updatelastcustomercontact.pl".
+The installer creates a DyncamicFiled called 'TicketLastCustomerContactTime' to store the values.
+To update the last contact time (TicketLastCustomerContactTime) for all existing ticket, execute "bin/znuny.UpdateLastCustomerContact.pl".
 This field is set as Default value in:
 * Frontend::Agent::Ticket::ViewQueue
 * Frontend::Agent::Ticket::ViewMailbox
@@ -28,9 +28,11 @@ Download the package and install it via admin interface -> package manager.
 
 - OTRS 3.2
 
+- OTRS 3.3
+
 **Download**
 
-For download see [http://znuny.com/d/](http://znuny.com/d/)
+For download see [http://znuny.com/en/#!/addons](http://znuny.com/en/#!/addons)
 
 **Commercial Support**
 
@@ -41,5 +43,4 @@ Enjoy!
  Your Znuny Team!
 
  [http://znuny.com](http://znuny.com)
-
 

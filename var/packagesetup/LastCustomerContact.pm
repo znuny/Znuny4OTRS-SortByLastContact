@@ -1,6 +1,6 @@
 # --
-# LastCustomerContact.pm
-# Copyright (C) 2013 Znuny GmbH, http://znuny.com/
+# var/packagesetup/LastCustomerContact.pm
+# Copyright (C) 2014 Znuny GmbH, http://znuny.com/
 # --
 
 package var::packagesetup::LastCustomerContact;
@@ -95,11 +95,11 @@ sub _CreateDynamicFields {
         FieldType  => 'DateTime',
         ObjectType => 'Ticket',
         Config     => {
-            'DefaultValue' => 0,
-            'Link' => '',
+            'DefaultValue'  => 0,
+            'Link'          => '',
             'YearsInFuture' => 5,
-            'YearsInPast' => 5,
-            'YearsPeriod' => 0,
+            'YearsInPast'   => 5,
+            'YearsPeriod'   => 0,
             },
         ValidID    => $ValidID,
         UserID     => 1,
@@ -107,9 +107,7 @@ sub _CreateDynamicFields {
 
     if ($TicketLastCustomerContactTimeID) {
         $NextOrderNumber++;
-
     }
-
 
     my $TicketLastCustomerContactDirection = $Self->{DynamicFieldObject}->DynamicFieldAdd(
         Name       => 'TicketLastCustomerContactDirection',
@@ -119,7 +117,7 @@ sub _CreateDynamicFields {
         ObjectType => 'Ticket',
         Config     => {
                           'DefaultValue' => '',
-                          'Link' => ''
+                          'Link'         => ''
                       }  ,
         ValidID    => $ValidID,
         UserID     => 1,

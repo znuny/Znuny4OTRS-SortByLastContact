@@ -1,8 +1,7 @@
 # --
 # Kernel/System/Ticket/Event/TimeUpdate.pm - time update event module
-# Copyright (C) 2013 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2014 Znuny GmbH, http://znuny.com/
 # --
-
 
 package Kernel::System::Ticket::Event::TimeUpdate;
 
@@ -38,7 +37,7 @@ sub Run {
             return;
         }
     }
-    
+
     return 1 if !$Param{Data}->{TicketID};
     return 1 if $Param{Event} ne 'ArticleCreate';
 
@@ -47,7 +46,7 @@ sub Run {
         TicketID => $Param{Data}->{TicketID},
     );
 
-    return 1 if !@ArticleIndex;
+    return 1 if !scalar @ArticleIndex;
 
     # get last article
     my %Article = $Self->{TicketObject}->ArticleGet(
@@ -55,7 +54,7 @@ sub Run {
     );
 
     return 1 if !%Article;
-    return 1 if $Article{SenderType} !~ /^(customer|agent)/;
+    return 1 if $Article{SenderType}  !~ /^(customer|agent)/;
     return 1 if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
 
     # remember sender type
@@ -68,7 +67,7 @@ sub Run {
         Name => "TicketLastCustomerContactTime",
     );
     return 1 if !$DynamicFieldConfigTime;
-    
+
     # get the current ticket
     my %Ticket = $Self->{TicketObject}->TicketGet(
         TicketID => $Param{Data}->{TicketID},
@@ -98,11 +97,13 @@ sub Run {
         push @UpdateHistory, $Item;
     }
 
-    # get the previous history entry to get the date values to find out the previous ticketstate in
-    # the next step
+    # get the previous history entry to get the date values
+    # to find out the previous ticketstate in the next step
     my %PreviousState;
-    if ( scalar @UpdateHistory >= 2 && $Article{SenderType} eq 'customer' ) {
-
+    if (
+        scalar @UpdateHistory >= 2
+        && $Article{SenderType} eq 'customer'
+    ) {
         # extract previous history entry
         my %PreviousHistoryEntry = %{ $UpdateHistory[-2] };
 
@@ -112,23 +113,28 @@ sub Run {
         );
     }
 
-    my $LastContactTime   = $Ticket{ 'TicketLastCustomerContactTime' } || '';
+    my $LastContactTime   = $Ticket{ 'TicketLastCustomerContactTime' }      || '';
     my $LastSender        = $Ticket{ 'TicketLastCustomerContactDirection' } || '';
+    my $PreviousStateType = $PreviousState{TypeName}                        || '';
     my $NewSender         = $Article{SenderType};
     my $StateType         = $Ticket{StateType};
-    my $PreviousStateType = $PreviousState{TypeName}                  || '';
 
-    return 1
-        if $LastSender eq 'customer'
-        && $NewSender  eq 'customer'
-        && $StateType  eq 'open'
-        && $PreviousStateType ne 'closed';
+    if (
+        $LastSender           eq 'customer'
+        && $NewSender         eq 'customer'
+        && $StateType         eq 'open'
+        && $PreviousStateType ne 'closed'
+    ) {
+        return 1
+    }
+
+    my $AricleCreatedSystemTime = $Self->{TimeObject}->TimeStamp2SystemTime(
+        String => $Article{Created},
+    );
 
     # remember sender time stamp
     my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = $Self->{TimeObject}->SystemTime2Date(
-        SystemTime => $Self->{TimeObject}->TimeStamp2SystemTime(
-            String => $Article{Created},
-        ),
+        SystemTime => $AricleCreatedSystemTime,
     );
 
     my $Direction = $Self->{DynamicFieldBackendObject}->ValueSet(

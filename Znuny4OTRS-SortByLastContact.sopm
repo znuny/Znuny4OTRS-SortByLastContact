@@ -5,6 +5,7 @@
     <ChangeLog Version="3.0.7" Date="2013-11-08 10:20:39 +0100">added early stop when no ticket id is given (double call)</ChangeLog>
     <Framework>3.1.x</Framework>
     <Framework>3.2.x</Framework>
+    <Framework>3.3.x</Framework>
     <Vendor>Znuny GmbH</Vendor>
     <URL>http://znuny.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
@@ -12,27 +13,27 @@
     <Description Lang="de">Ticket Sortierung nach letztem Kundenkontakt.</Description>
     <Framework>3.x.x</Framework>
     <Filelist>
+        <File Location="bin/znuny.UpdateLastCustomerContact.pl" Permission="755"/>
         <File Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml" Permission="644"/>
         <File Location="Kernel/System/Ticket/Event/TimeUpdate.pm" Permission="644"/>
-        <File Location="scripts/updatelastcustomercontact.pl" Permission="755"/>
         <File Location="var/packagesetup/LastCustomerContact.pm" Permission="644"/>
     </Filelist>
     <CodeInstall Type="post"><![CDATA[
-  
+
           # define function name
           my $FunctionName = 'CodeInstall';
-  
+
           # create the package name
           my $CodeModule = 'var::packagesetup::LastCustomerContact';
-  
+
           # load the module
           if ( $Self->{MainObject}->Require($CodeModule) ) {
-  
+
               # create new instance
               my $CodeObject = $CodeModule->new( %{$Self} );
-  
+
               if ($CodeObject) {
-  
+
                   # start method
                   if ( !$CodeObject->$FunctionName(%{$Self}) ) {
                       $Self->{LogObject}->Log(
@@ -41,7 +42,7 @@
                       );
                   }
               }
-  
+
               # error handling
               else {
                   $Self->{LogObject}->Log(
@@ -50,25 +51,25 @@
                   );
               }
           }
-  
+
       ]]>
     </CodeInstall>
     <CodeReinstall Type="post"><![CDATA[
-  
+
           # define function name
           my $FunctionName = 'CodeInstall';
-  
+
           # create the package name
           my $CodeModule = 'var::packagesetup::LastCustomerContact';
-  
+
           # load the module
           if ( $Self->{MainObject}->Require($CodeModule) ) {
-  
+
               # create new instance
               my $CodeObject = $CodeModule->new( %{$Self} );
-  
+
               if ($CodeObject) {
-  
+
                   # start method
                   if ( !$CodeObject->$FunctionName(%{$Self}) ) {
                       $Self->{LogObject}->Log(
@@ -77,7 +78,7 @@
                       );
                   }
               }
-  
+
               # error handling
               else {
                   $Self->{LogObject}->Log(
