@@ -38,7 +38,6 @@ $CommonObject{DynamicFieldObject}        = Kernel::System::DynamicField->new( %C
 $CommonObject{DynamicFieldBackendObject} = Kernel::System::DynamicField::Backend->new( %CommonObject );
 
 # get all open tickets
-my $SQL = ;
 $CommonObject{DBObject}->Prepare(
     SQL => "SELECT t.id FROM ticket t, ticket_state ts, ticket_state_type tst WHERE"
           ." t.ticket_state_id = ts.id AND ts.type_id = tst.id AND tst.name IN"
