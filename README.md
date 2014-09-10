@@ -9,7 +9,7 @@ Just install the package and the feature will be enabled automatically.
 
 **Feature List**
 
-The installer creates a DyncamicFiled called 'TicketLastCustomerContactTime' to store the values.
+The installer creates a DynamicField called 'TicketLastCustomerContactTime' to store the values.
 To update the last contact time (TicketLastCustomerContactTime) for all existing ticket, execute "bin/znuny.UpdateLastCustomerContact.pl".
 This field is set as Default value in:
 * Frontend::Agent::Ticket::ViewQueue
