@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.1">
-    <Name>Znuny4OTRS-SortByLastCustomerContact</Name>
-    <Version>3.1.1</Version>
-    <ChangeLog Version="3.1.1" Date="2014-01-28 11:52:06 +0100">Fixed bug: Syntax error caused by invalid variable.</ChangeLog>
-    <ChangeLog Version="3.1.0" Date="2014-01-14 14:45:36 +0100">Added OTRS 3.3 support.</ChangeLog>
-    <ChangeLog Version="3.0.7" Date="2013-11-08 10:20:39 +0100">added early stop when no ticket id is given (double call)</ChangeLog>
-    <Framework>3.1.x</Framework>
-    <Framework>3.2.x</Framework>
-    <Framework>3.3.x</Framework>
-    <PackageRequired Version="1.0.0">Znuny4OTRS-Repo</PackageRequired>
+    <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
+    <Name>Znuny4OTRS-SortByLastContact</Name>
+    <Version>3.1.2</Version>
+    <Framework>4.0.x</Framework>
+    <PackageRequired Version="2.0.3">Znuny4OTRS-Repo</PackageRequired>
     <Vendor>Znuny GmbH</Vendor>
     <URL>http://znuny.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
@@ -17,80 +13,37 @@
     <Filelist>
         <File Location="bin/znuny.UpdateLastCustomerContact.pl" Permission="755"/>
         <File Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml" Permission="644"/>
+        <File Location="Kernel/Language/de_Znuny4OTRSSortByLastContact" Permission="644"/>
         <File Location="Kernel/System/Ticket/Event/TimeUpdate.pm" Permission="644"/>
-        <File Location="var/packagesetup/LastCustomerContact.pm" Permission="644"/>
+        <File Location="var/packagesetup/Znuny4OTRSSortByLastContact.pm" Permission="644"/>
     </Filelist>
     <CodeInstall Type="post"><![CDATA[
 
-          # define function name
-          my $FunctionName = 'CodeInstall';
+        # create the package name
+        my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
 
-          # create the package name
-          my $CodeModule = 'var::packagesetup::LastCustomerContact';
-
-          # load the module
-          if ( $Self->{MainObject}->Require($CodeModule) ) {
-
-              # create new instance
-              my $CodeObject = $CodeModule->new( %{$Self} );
-
-              if ($CodeObject) {
-
-                  # start method
-                  if ( !$CodeObject->$FunctionName(%{$Self}) ) {
-                      $Self->{LogObject}->Log(
-                          Priority => 'error',
-                          Message  => "Could not call method $FunctionName() on $CodeModule.pm."
-                      );
-                  }
-              }
-
-              # error handling
-              else {
-                  $Self->{LogObject}->Log(
-                      Priority => 'error',
-                      Message  => "Could not call method new() on $CodeModule.pm."
-                  );
-              }
-          }
-
-      ]]>
+        $Kernel::OM->Get($CodeModule)->CodeInstall();
+    ]]>
     </CodeInstall>
+    <CodeUpgrade Type="post"><![CDATA[
+
+        # create the package name
+        my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
+
+        $Kernel::OM->Get($CodeModule)->CodeUpgrade();
+    ]]></CodeUpgrade>
     <CodeReinstall Type="post"><![CDATA[
 
-          # define function name
-          my $FunctionName = 'CodeInstall';
+        # create the package name
+        my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
 
-          # create the package name
-          my $CodeModule = 'var::packagesetup::LastCustomerContact';
+        $Kernel::OM->Get($CodeModule)->CodeReinstall();
+    ]]></CodeReinstall>
+    <CodeUninstall Type="pre"><![CDATA[
 
-          # load the module
-          if ( $Self->{MainObject}->Require($CodeModule) ) {
+        # create the package name
+        my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
 
-              # create new instance
-              my $CodeObject = $CodeModule->new( %{$Self} );
-
-              if ($CodeObject) {
-
-                  # start method
-                  if ( !$CodeObject->$FunctionName(%{$Self}) ) {
-                      $Self->{LogObject}->Log(
-                          Priority => 'error',
-                          Message  => "Could not call method $FunctionName() on $CodeModule.pm."
-                      );
-                  }
-              }
-
-              # error handling
-              else {
-                  $Self->{LogObject}->Log(
-                      Priority => 'error',
-                      Message  => "Could not call method new() on $CodeModule.pm."
-                  );
-              }
-          }
-      ]]>
-    </CodeReinstall>
+        $Kernel::OM->Get($CodeModule)->CodeUninstall();
+    ]]></CodeUninstall>
 </otrs_package>
-
-

@@ -24,11 +24,7 @@ Download the package and install it via admin interface -> package manager.
 
 **Prerequisites**
 
-- OTRS 3.1
-
-- OTRS 3.2
-
-- OTRS 3.3
+- OTRS 4.0
 
 **Download**
 
@@ -43,4 +39,3 @@ Enjoy!
  Your Znuny Team!
 
  [http://znuny.com](http://znuny.com)
-
