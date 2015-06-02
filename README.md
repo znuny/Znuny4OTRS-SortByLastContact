@@ -13,7 +13,7 @@ The installer creates a DynamicField called 'TicketLastCustomerContactTime' to s
 To update the last contact time (TicketLastCustomerContactTime) for all existing ticket, execute "bin/znuny.UpdateLastCustomerContact.pl".
 This field is set as Default value in:
 * Frontend::Agent::Ticket::ViewQueue
-* Frontend::Agent::Ticket::ViewMailbox
+* Frontend::Agent::Ticket::ViewLocked
 * Frontend::Agent::Ticket::ViewStatus
 
 Many thanks to Myhammer AG, which made this possible.
