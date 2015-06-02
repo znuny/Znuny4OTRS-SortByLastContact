@@ -2,7 +2,8 @@
 <otrs_package version="1.1">
     <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Name>Znuny4OTRS-SortByLastContact</Name>
-    <Version>3.1.2</Version>
+    <Version>3.2.0</Version>
+    <ChangeLog Version="3.2.0" Date="2015-06-02 14:31:10 UTC">initial release 4.0.x.</ChangeLog>
     <Framework>4.0.x</Framework>
     <PackageRequired Version="2.0.3">Znuny4OTRS-Repo</PackageRequired>
     <Vendor>Znuny GmbH</Vendor>
