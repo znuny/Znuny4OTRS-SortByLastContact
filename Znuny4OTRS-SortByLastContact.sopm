@@ -14,7 +14,7 @@
     <Filelist>
         <File Location="bin/znuny.UpdateLastCustomerContact.pl" Permission="755"/>
         <File Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml" Permission="644"/>
-        <File Location="Kernel/Language/de_Znuny4OTRSSortByLastContact" Permission="644"/>
+        <File Location="Kernel/Language/de_Znuny4OTRSSortByLastContact.pm" Permission="644"/>
         <File Location="Kernel/System/Ticket/Event/TimeUpdate.pm" Permission="644"/>
         <File Location="var/packagesetup/Znuny4OTRSSortByLastContact.pm" Permission="644"/>
     </Filelist>

@@ -19,7 +19,8 @@ sub Data {
 
     $Self->{Translation}->{"Queue sort by default."} = "Standard Sortierung der Queue.";
     $Self->{Translation}->{"Ticket event module to update last customer contact timestamp after article create action."} = "Ticket Event Modul zum automatischen Setzen des Zeitstempels für den letzten Kunden-Kontakt nach Erstellung eines Artikels.";
-
+    $Self->{Translation}->{'TicketLastCustomerContactTime'} = 'Letzter Kundenkontakt';
+    $Self->{Translation}->{'TicketLastCustomerContactDirection'} = 'Letzter Kontakt durch';
     return 1;
 }
 
