@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <otrs_package version="1.1">
     <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Name>Znuny4OTRS-SortByLastContact</Name>
-    <Version>3.2.0</Version>
+    <Version>3.2.1</Version>
+    <ChangeLog Version="3.2.1" Date="2015-08-19 12:52:19 UTC">added missing file extension&#13;
+added translation for dynamic fields</ChangeLog>
     <ChangeLog Version="3.2.0" Date="2015-06-02 14:31:10 UTC">initial release 4.0.x.</ChangeLog>
     <Framework>4.0.x</Framework>
     <PackageRequired Version="2.0.3">Znuny4OTRS-Repo</PackageRequired>
