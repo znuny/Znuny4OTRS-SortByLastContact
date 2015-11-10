@@ -10,7 +10,7 @@ Just install the package and the feature will be enabled automatically.
 **Feature List**
 
 The installer creates a DynamicField called 'TicketLastCustomerContactTime' to store the values.
-To update the last contact time (TicketLastCustomerContactTime) for all existing ticket, execute "bin/znuny.UpdateLastCustomerContact.pl".
+To update the last contact time (TicketLastCustomerContactTime) for all existing ticket, execute "bin/otrs.Console.pl Znuny::SortByLastContact".
 This field is set as Default value in:
 * Frontend::Agent::Ticket::ViewQueue
 * Frontend::Agent::Ticket::ViewLocked
