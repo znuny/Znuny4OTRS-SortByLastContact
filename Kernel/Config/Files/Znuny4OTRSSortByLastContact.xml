@@ -2,7 +2,7 @@
 <otrs_config version="1.0" init="Changes">
     <ConfigItem Name="Ticket::EventModulePost###SetLastCustomerContact" Required="0" Valid="1">
         <Description Translatable="1">Ticket event module to update last customer contact timestamp after article create action.</Description>
-        <Group>Ticket</Group>
+        <Group>Znuny4OTRS-SortByLastContact</Group>
         <SubGroup>Core::Ticket</SubGroup>
         <Setting>
             <Hash>
@@ -13,7 +13,7 @@
     </ConfigItem>
     <ConfigItem Name="Ticket::Frontend::AgentTicketQueue###SortBy::Default" Required="1" Valid="1">
         <Description Translatable="1">Defines the default sort criteria for all queues displayed in the queue view.</Description>
-        <Group>Ticket</Group>
+        <Group>Znuny4OTRS-SortByLastContact</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewQueue</SubGroup>
         <Setting>
             <Option SelectedID="DynamicField_TicketLastCustomerContactTime">
@@ -28,7 +28,7 @@
     </ConfigItem>
     <ConfigItem Name="Ticket::Frontend::AgentTicketStatusView###SortBy::Default" Required="1" Valid="1">
         <Description Translatable="1">Defines the default ticket attribute for ticket sorting in the status view of the agent interface.</Description>
-        <Group>Ticket</Group>
+        <Group>Znuny4OTRS-SortByLastContact</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewStatus</SubGroup>
         <Setting>
             <Option SelectedID="DynamicField_TicketLastCustomerContactTime">
@@ -44,7 +44,7 @@
     </ConfigItem>
     <ConfigItem Name="Ticket::Frontend::AgentTicketStatusView###Order::Default" Required="1" Valid="1">
         <Description Translatable="1">Defines the default ticket order (after priority sort) in the status view of the agent interface. Up: oldest on top. Down: latest on top.</Description>
-        <Group>Ticket</Group>
+        <Group>Znuny4OTRS-SortByLastContact</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewStatus</SubGroup>
         <Setting>
             <Option SelectedID="Up">
@@ -55,7 +55,7 @@
     </ConfigItem>
     <ConfigItem Name="Ticket::Frontend::AgentTicketLockedView###SortBy::Default" Required="1" Valid="1">
         <Description Translatable="1">Defines the default ticket attribute for ticket sorting in the locked ticket view of the agent interface.</Description>
-        <Group>Ticket</Group>
+        <Group>Znuny4OTRS-SortByLastContact</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewLocked</SubGroup>
         <Setting>
             <Option SelectedID="DynamicField_TicketLastCustomerContactTime">
@@ -71,7 +71,7 @@
     </ConfigItem>
     <ConfigItem Name="Ticket::Frontend::AgentTicketQueue###PreSort::ByPriority" Required="1" Valid="1">
         <Description Translatable="1">Defines if a pre-sorting by priority should be done in the queue view.</Description>
-        <Group>Ticket</Group>
+        <Group>Znuny4OTRS-SortByLastContact</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewQueue</SubGroup>
         <Setting>
             <Option SelectedID="0">

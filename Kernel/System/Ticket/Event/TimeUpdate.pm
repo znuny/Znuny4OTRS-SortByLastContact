@@ -1,5 +1,4 @@
 # --
-# Kernel/System/Ticket/Event/TimeUpdate.pm - time update event module
 # Copyright (C) 2012-2015 Znuny GmbH, http://znuny.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -44,11 +43,11 @@ sub Run {
     my $TimeObject                = $Kernel::OM->Get('Kernel::System::Time');
 
     # check needed stuff
-    for (qw(Data Event Config)) {
-        if ( !$Param{$_} ) {
+    for my $Needed (qw(Data Event Config)) {
+        if ( !$Param{$Needed} ) {
             $LogObject->Log(
                 Priority => 'error',
-                Message  => "Need $_!"
+                Message  => "Need $Needed!"
             );
             return;
         }

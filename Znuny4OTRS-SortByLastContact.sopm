@@ -1,50 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.1">
-    <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Name>Znuny4OTRS-SortByLastContact</Name>
     <Version>3.2.0</Version>
-    <ChangeLog Version="3.2.0" Date="2015-06-02 14:31:10 UTC">initial release 4.0.x.</ChangeLog>
-    <Framework>4.0.x</Framework>
-    <PackageRequired Version="2.0.3">Znuny4OTRS-Repo</PackageRequired>
+    <Framework>5.0.x</Framework>
+    <PackageRequired Version="3.0.0">Znuny4OTRS-Repo</PackageRequired>
     <Vendor>Znuny GmbH</Vendor>
     <URL>http://znuny.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">Ticket sort order by last customer contact.</Description>
     <Description Lang="de">Ticket Sortierung nach letztem Kundenkontakt.</Description>
     <Filelist>
-        <File Location="bin/znuny.UpdateLastCustomerContact.pl" Permission="755"/>
-        <File Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml" Permission="644"/>
-        <File Location="Kernel/Language/de_Znuny4OTRSSortByLastContact.pm" Permission="644"/>
-        <File Location="Kernel/System/Ticket/Event/TimeUpdate.pm" Permission="644"/>
-        <File Location="var/packagesetup/Znuny4OTRSSortByLastContact.pm" Permission="644"/>
+        <File Permission="644" Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml"/>
+        <File Permission="644" Location="Kernel/Language/de_Znuny4OTRSSortByLastContact.pm"/>
+        <File Permission="644" Location="Kernel/System/Ticket/Event/TimeUpdate.pm"/>
+        <File Permission="755" Location="bin/znuny.UpdateLastCustomerContact.pl"/>
+        <File Permission="644" Location="var/packagesetup/Znuny4OTRSSortByLastContact.pm"/>
     </Filelist>
     <CodeInstall Type="post"><![CDATA[
-
         # create the package name
         my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
-
         $Kernel::OM->Get($CodeModule)->CodeInstall();
     ]]>
     </CodeInstall>
     <CodeUpgrade Type="post"><![CDATA[
-
         # create the package name
         my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
-
         $Kernel::OM->Get($CodeModule)->CodeUpgrade();
     ]]></CodeUpgrade>
     <CodeReinstall Type="post"><![CDATA[
-
         # create the package name
         my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
-
         $Kernel::OM->Get($CodeModule)->CodeReinstall();
     ]]></CodeReinstall>
     <CodeUninstall Type="pre"><![CDATA[
-
         # create the package name
         my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
-
         $Kernel::OM->Get($CodeModule)->CodeUninstall();
     ]]></CodeUninstall>
 </otrs_package>
