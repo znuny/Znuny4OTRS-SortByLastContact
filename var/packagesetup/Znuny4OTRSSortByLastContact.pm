@@ -137,12 +137,13 @@ sub _CreateDynamicFields {
     );
 
     my $TicketLastCustomerContactTimeID = $DynamicFieldObject->DynamicFieldAdd(
-        Name       => 'TicketLastCustomerContactTime',
-        Label      => 'TicketLastCustomerContactTime',
-        FieldOrder => $NextOrderNumber,
-        FieldType  => 'DateTime',
-        ObjectType => 'Ticket',
-        Config     => {
+        InternalField => 1,
+        Name          => 'TicketLastCustomerContactTime',
+        Label         => 'TicketLastCustomerContactTime',
+        FieldOrder    => $NextOrderNumber,
+        FieldType     => 'DateTime',
+        ObjectType    => 'Ticket',
+        Config        => {
             'DefaultValue'  => 0,
             'Link'          => '',
             'YearsInFuture' => 5,
@@ -158,12 +159,13 @@ sub _CreateDynamicFields {
     }
 
     my $TicketLastCustomerContactDirection = $DynamicFieldObject->DynamicFieldAdd(
-        Name       => 'TicketLastCustomerContactDirection',
-        Label      => 'TicketLastCustomerContactDirection',
-        FieldOrder => $NextOrderNumber,
-        FieldType  => 'Text',
-        ObjectType => 'Ticket',
-        Config     => {
+        InternalField => 1,
+        Name          => 'TicketLastCustomerContactDirection',
+        Label         => 'TicketLastCustomerContactDirection',
+        FieldOrder    => $NextOrderNumber,
+        FieldType     => 'Text',
+        ObjectType    => 'Ticket',
+        Config        => {
             'DefaultValue' => '',
             'Link'         => ''
         },
