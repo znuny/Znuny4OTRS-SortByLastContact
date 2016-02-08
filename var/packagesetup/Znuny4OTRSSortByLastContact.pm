@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2012-2015 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2016 Znuny GmbH, http://znuny.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -137,7 +137,7 @@ sub _CreateDynamicFields {
     );
 
     my $TicketLastCustomerContactTimeID = $DynamicFieldObject->DynamicFieldAdd(
-        InternalField => 1,
+        InternalField => 0,
         Name          => 'TicketLastCustomerContactTime',
         Label         => 'TicketLastCustomerContactTime',
         FieldOrder    => $NextOrderNumber,
@@ -159,7 +159,7 @@ sub _CreateDynamicFields {
     }
 
     my $TicketLastCustomerContactDirection = $DynamicFieldObject->DynamicFieldAdd(
-        InternalField => 1,
+        InternalField => 0,
         Name          => 'TicketLastCustomerContactDirection',
         Label         => 'TicketLastCustomerContactDirection',
         FieldOrder    => $NextOrderNumber,
