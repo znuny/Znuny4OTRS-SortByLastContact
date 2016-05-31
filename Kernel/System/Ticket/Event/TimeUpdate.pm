@@ -44,14 +44,16 @@ sub Run {
     my $TimeObject                = $Kernel::OM->Get('Kernel::System::Time');
 
     # check needed stuff
-    for (qw(Data Event Config)) {
-        if ( !$Param{$_} ) {
-            $LogObject->Log(
-                Priority => 'error',
-                Message  => "Need $_!"
-            );
-            return;
-        }
+    NEEDED:
+    for my $Needed (qw(Data Event Config)) {
+
+        next NEEDED if defined $Param{$Needed};
+
+        $LogObject->Log(
+            Priority => 'error',
+            Message  => "Parameter '$Needed' is needed!",
+        );
+        return;
     }
 
     return 1 if !$Param{Data}->{TicketID};
