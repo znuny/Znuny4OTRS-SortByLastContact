@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # --
 # bin/znuny.UpdateLastCustomerContact.pl - update all tickets with last customer contact
-# Copyright (C) 2012-2015 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2016 Znuny GmbH, http://znuny.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
