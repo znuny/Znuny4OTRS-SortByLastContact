@@ -12,39 +12,55 @@
     <Description Lang="en">Ticket sort order by last customer contact.</Description>
     <Description Lang="de">Ticket Sortierung nach letztem Kundenkontakt.</Description>
     <Filelist>
-        <File Location="bin/znuny.UpdateLastCustomerContact.pl" Permission="755"/>
-        <File Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml" Permission="644"/>
-        <File Location="Kernel/Language/de_Znuny4OTRSSortByLastContact.pm" Permission="644"/>
-        <File Location="Kernel/System/Ticket/Event/TimeUpdate.pm" Permission="644"/>
-        <File Location="var/packagesetup/Znuny4OTRSSortByLastContact.pm" Permission="644"/>
+        <File Permission="644" Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml"/>
+        <File Permission="644" Location="Kernel/Language/de_Znuny4OTRSSortByLastContact.pm"/>
+        <File Permission="644" Location="Kernel/System/Ticket/Event/TimeUpdate.pm"/>
+        <File Permission="755" Location="bin/znuny.UpdateLastCustomerContact.pl"/>
     </Filelist>
     <CodeInstall Type="post"><![CDATA[
 
-        # create the package name
-        my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
+        my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
 
-        $Kernel::OM->Get($CodeModule)->CodeInstall();
-    ]]>
-    </CodeInstall>
-    <CodeUpgrade Type="post"><![CDATA[
+        # This function creates all dynamic fields that are necessary.
+        my @DynamicFields = (
+            {
+                Name       => 'TicketLastCustomerContactTime',
+                Label      => "TicketLastCustomerContactTime",
+                ObjectType => 'Ticket',
+                FieldType  => 'DateTime',
+                Config     => {
+                    'DefaultValue'  => 0,
+                    'Link'          => '',
+                    'YearsInFuture' => 5,
+                    'YearsInPast'   => 5,
+                    'YearsPeriod'   => 0,
+                },
+            },
+            {
+                Name       => 'TicketLastCustomerContactDirection',
+                Label      => "TicketLastCustomerContactDirection",
+                ObjectType => 'Ticket',
+                FieldType  => 'Text',
+                Config     => {
+                    'DefaultValue' => '',
+                    'Link'         => ''
+                },
+            },
+        );
 
-        # create the package name
-        my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
+        my $Result = $ZnunyHelperObject->_DynamicFieldsCreateIfNotExists( @DynamicFields );
 
-        $Kernel::OM->Get($CodeModule)->CodeUpgrade();
-    ]]></CodeUpgrade>
-    <CodeReinstall Type="post"><![CDATA[
+    ]]></CodeInstall>
+    <CodeUninstall Type="post"><![CDATA[
 
-        # create the package name
-        my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
+        my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
 
-        $Kernel::OM->Get($CodeModule)->CodeReinstall();
-    ]]></CodeReinstall>
-    <CodeUninstall Type="pre"><![CDATA[
+        my @DynamicFieldRemove = (
+            'TicketLastCustomerContactTime',
+            'TicketLastCustomerContactDirection'
+        );
 
-        # create the package name
-        my $CodeModule = 'var::packagesetup::Znuny4OTRSSortByLastContact';
+        $ZnunyHelperObject->_DynamicFieldsDelete( @DynamicFieldRemove );
 
-        $Kernel::OM->Get($CodeModule)->CodeUninstall();
     ]]></CodeUninstall>
 </otrs_package>
