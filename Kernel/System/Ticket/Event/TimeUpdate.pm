@@ -72,7 +72,7 @@ sub Run {
 
     return 1 if !%Article;
     return 1 if $Article{SenderType} !~ /^(customer|agent)/;
-    return 1 if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
+    return 1 if $Article{ArticleType} !~ /(extern|phone|fax|sms|webrequest)/;
 
     # remember sender type
     my $DynamicFieldConfigDirection = $DynamicFieldObject->DynamicFieldGet(
