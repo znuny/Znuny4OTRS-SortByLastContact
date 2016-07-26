@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_package version="1.1">
     <Name>Znuny4OTRS-SortByLastContact</Name>
-    <Version>3.3.1</Version>
+    <Version>5.0.1</Version>
+    <ChangeLog Version="5.0.1" Date="2016-07-26 11:44:49 +0200">Fixed issue #11 - Customer webrequests are not counted.</ChangeLog>
     <ChangeLog Version="3.3.1" Date="2015-11-11 13:59:47 UTC">Added InternalField to protect dynamic fields.</ChangeLog>
     <ChangeLog Version="3.3.0" Date="2015-11-10 22:42:20 UTC">Initial release for OTRS 5.</ChangeLog>
     <Framework>5.0.x</Framework>
