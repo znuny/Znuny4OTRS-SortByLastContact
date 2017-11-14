@@ -6,19 +6,19 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::System::Console::Command::Znuny::SortByLastContact;
+package Kernel::System::Console::Command::Znuny4OTRS::SortByLastContact;
 
 use strict;
 use warnings;
 
-use base qw(Kernel::System::Console::BaseCommand);
+use parent qw(Kernel::System::Console::BaseCommand);
 
 our @ObjectDependencies = (
-    'Kernel::System::DB',
     'Kernel::System::DynamicField',
     'Kernel::System::DynamicField::Backend',
     'Kernel::System::Ticket',
-    'Kernel::System::Time',
+    'Kernel::System::Ticket::Article',
+    'Kernel::System::ZnunyTime',
 );
 
 sub Configure {
@@ -41,23 +41,17 @@ sub Run {
 
     $Self->Print("<yellow>Updating all tickets with last customer contact time...</yellow>\n\n");
 
-    my $DBObject                  = $Kernel::OM->Get('Kernel::System::DB');
     my $DynamicFieldObject        = $Kernel::OM->Get('Kernel::System::DynamicField');
     my $TicketObject              = $Kernel::OM->Get('Kernel::System::Ticket');
-    my $TimeObject                = $Kernel::OM->Get('Kernel::System::Time');
+    my $TimeObject                = $Kernel::OM->Get('Kernel::System::ZnunyTime');
     my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
+    my $ArticleObject             = $Kernel::OM->Get('Kernel::System::Ticket::Article');
 
-    # get all open tickets
-    $DBObject->Prepare(
-        SQL => "SELECT t.id FROM ticket t, ticket_state ts, ticket_state_type tst WHERE"
-            . " t.ticket_state_id = ts.id AND ts.type_id = tst.id AND tst.name IN"
-            . " ('new', 'open', 'pending reminder', 'pending auto')"
+    my @TicketIDs = $TicketObject->TicketSearch(
+        UserID    => 1,
+        Result    => 'ARRAY',
+        StateType => 'Open',    # (Open|Closed) tickets for all closed or open tickets.
     );
-
-    my @TicketIDs;
-    while ( my @Row = $DBObject->FetchrowArray() ) {
-        push @TicketIDs, $Row[0];
-    }
 
     if ( !scalar @TicketIDs ) {
         $Self->PrintError("Can't update. Need TicketIDs.\n");
@@ -88,22 +82,26 @@ sub Run {
         if ( $Self->GetOption('list') ) {
             $Self->Print("<yellow>Updating TicketID $TicketID.</yellow>\n");
         }
-        my @ArticleIndex = $TicketObject->ArticleIndex( TicketID => $TicketID );
 
-        next TICKETS if !scalar @ArticleIndex;
+        my @Articles = $ArticleObject->ArticleList(
+            TicketID => $TicketID,
+        );
+
+        my %ArticleSenderTypeList = $ArticleObject->ArticleSenderTypeList();
+
+        next TICKETS if !scalar @Articles;
 
         # article loop
         ARTICLES:
-        for my $ArticleID ( reverse sort { $a <=> $b } @ArticleIndex ) {
+        for my $Article ( reverse sort { $a <=> $b } @Articles ) {
 
-            my %Article = $TicketObject->ArticleGet( ArticleID => $ArticleID );
+            my $SenderType = $ArticleSenderTypeList{ $Article->{SenderTypeID} };
 
-            next ARTICLES if !%Article;
-            next ARTICLES if $Article{SenderType} !~ /^(customer|agent)/;
-            next ARTICLES if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
+            next ARTICLES if $SenderType !~ /^(customer|agent)/;
+            next ARTICLES if $Article->{IsVisibleForCustomer} eq 0;
 
             my $SystemTime = $TimeObject->TimeStamp2SystemTime(
-                String => $Article{Created},
+                String => $Article->{CreateTime},
             );
 
             # update last customer update timestamp
@@ -114,7 +112,7 @@ sub Run {
             my $Direction = $DynamicFieldBackendObject->ValueSet(
                 DynamicFieldConfig => $DynamicFieldConfigDirection,
                 ObjectID           => $TicketID,
-                Value              => $Article{SenderType},
+                Value              => $SenderType,
                 UserID             => 1,
             );
 
@@ -126,7 +124,7 @@ sub Run {
             my $Time = $DynamicFieldBackendObject->ValueSet(
                 DynamicFieldConfig => $DynamicFieldConfigTime,
                 ObjectID           => $TicketID,
-                Value              => $Article{Created},
+                Value              => $Article->{CreateTime},
                 UserID             => 1,
             );
 
@@ -145,8 +143,6 @@ sub Run {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 
