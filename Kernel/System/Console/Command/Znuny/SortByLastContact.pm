@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2012-2016 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2017 Znuny GmbH, http://znuny.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -102,11 +102,13 @@ sub Run {
             next ARTICLES if $Article{SenderType} !~ /^(customer|agent)/;
             next ARTICLES if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
 
+            my $SystemTime = $TimeObject->TimeStamp2SystemTime(
+                String => $Article{Created},
+            );
+
             # update last customer update timestamp
             my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = $TimeObject->SystemTime2Date(
-                SystemTime => $TimeObject->TimeStamp2SystemTime(
-                    String => $Article{Created},
-                ),
+                SystemTime => $SystemTime,
             );
 
             my $Direction = $DynamicFieldBackendObject->ValueSet(
