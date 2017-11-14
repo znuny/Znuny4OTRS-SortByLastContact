@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<otrs_config version="2.0" init="Changes">
+    <Setting Name="Ticket::EventModulePost###SetLastCustomerContact" Required="0" Valid="1">
+        <Description Translatable="1">Ticket event module to update last customer contact timestamp after article create action.</Description>
+        <Navigation>Core::Event::Ticket</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Module">Kernel::System::Ticket::Event::TimeUpdate</Item>
+                <Item Key="Event">ArticleCreate</Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Ticket::Frontend::AgentTicketQueue###SortBy::Default" UserPreferencesGroup="Advanced" UserModificationActive="1" UserModificationPossible="1" Required="1" Valid="1">
+        <Description Translatable="1">Defines the default sort criteria for all queues displayed in the queue view.</Description>
+        <Navigation>Frontend::Agent::View::TicketQueue</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="DynamicField_TicketLastCustomerContactTime">
+                <Item ValueType="Option" Value="Age" Translatable="1">Age</Item>
+                <Item ValueType="Option" Value="TicketNumber" Translatable="1">TicketNumber</Item>
+                <Item ValueType="Option" Value="Title" Translatable="1">Title</Item>
+                <Item ValueType="Option" Value="Queue" Translatable="1">Queue</Item>
+                <Item ValueType="Option" Value="EscalationTime" Translatable="1">EscalationTime</Item>
+                <Item ValueType="Option" Value="DynamicField_TicketLastCustomerContactTime">DynamicField_TicketLastCustomerContactTime</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Ticket::Frontend::AgentTicketStatusView###SortBy::Default" UserPreferencesGroup="Advanced" UserModificationActive="1" UserModificationPossible="1" Required="1" Valid="1">
+        <Description Translatable="1">Defines the default ticket attribute for ticket sorting in the status view of the agent interface.</Description>
+        <Navigation>Frontend::Agent::View::TicketStatus</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="DynamicField_TicketLastCustomerContactTime">
+                <Item ValueType="Option" Value="Age" Translatable="1">Age</Item>
+                <Item ValueType="Option" Value="TicketNumber" Translatable="1">TicketNumber</Item>
+                <Item ValueType="Option" Value="Title" Translatable="1">Title</Item>
+                <Item ValueType="Option" Value="Queue" Translatable="1">Queue</Item>
+                <Item ValueType="Option" Value="Priority" Translatable="1">Priority</Item>
+                <Item ValueType="Option" Value="EscalationTime" Translatable="1">EscalationTime</Item>
+                <Item ValueType="Option" Value="DynamicField_TicketLastCustomerContactTime">DynamicField_TicketLastCustomerContactTime</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Ticket::Frontend::AgentTicketStatusView###Order::Default" UserPreferencesGroup="Advanced" UserModificationActive="1" UserModificationPossible="1" Required="1" Valid="1">
+        <Description Translatable="1">Defines the default ticket order (after priority sort) in the status view of the agent interface. Up: oldest on top. Down: latest on top.</Description>
+        <Navigation>Frontend::Agent::View::TicketStatus</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="Up">
+                <Item ValueType="Option" Value="Down" Translatable="1">Down</Item>
+                <Item ValueType="Option" Value="Up" Translatable="1">Up</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Ticket::Frontend::AgentTicketLockedView###SortBy::Default" UserPreferencesGroup="Advanced" UserModificationActive="1" UserModificationPossible="1" Required="1" Valid="1">
+        <Description Translatable="1">Defines the default ticket attribute for ticket sorting in the locked ticket view of the agent interface.</Description>
+        <Navigation>Frontend::Agent::View::TicketLocked</Navigation>
+        <Value>
+            <Item ValueType="Select" SelectedID="DynamicField_TicketLastCustomerContactTime">
+                <Item ValueType="Option" Value="Age" Translatable="1">Age</Item>
+                <Item ValueType="Option" Value="TicketNumber" Translatable="1">TicketNumber</Item>
+                <Item ValueType="Option" Value="Title" Translatable="1">Title</Item>
+                <Item ValueType="Option" Value="Queue" Translatable="1">Queue</Item>
+                <Item ValueType="Option" Value="Priority" Translatable="1">Priority</Item>
+                <Item ValueType="Option" Value="EscalationTime" Translatable="1">EscalationTime</Item>
+                <Item ValueType="Option" Value="DynamicField_TicketLastCustomerContactTime">DynamicField_TicketLastCustomerContactTime</Item>
+            </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Ticket::Frontend::AgentTicketQueue###PreSort::ByPriority" Required="1" Valid="1">
+        <Description Translatable="1">Defines if a pre-sorting by priority should be done in the queue view.</Description>
+        <Navigation>Frontend::Agent::View::TicketQueue</Navigation>
+        <Value>
+            <Item ValueType="Checkbox">0</Item>
+        </Value>
+    </Setting>
+</otrs_config>

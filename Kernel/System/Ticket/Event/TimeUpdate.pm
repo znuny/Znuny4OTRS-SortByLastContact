@@ -19,7 +19,8 @@ our @ObjectDependencies = (
     'Kernel::System::Log',
     'Kernel::System::State',
     'Kernel::System::Ticket',
-    'Kernel::System::Time',
+    'Kernel::System::Ticket::Article',
+    'Kernel::System::ZnunyTime',
 );
 
 sub new {
@@ -40,7 +41,8 @@ sub Run {
     my $LogObject                 = $Kernel::OM->Get('Kernel::System::Log');
     my $StateObject               = $Kernel::OM->Get('Kernel::System::State');
     my $TicketObject              = $Kernel::OM->Get('Kernel::System::Ticket');
-    my $TimeObject                = $Kernel::OM->Get('Kernel::System::Time');
+    my $TimeObject                = $Kernel::OM->Get('Kernel::System::ZnunyTime');
+    my $ArticleObject             = $Kernel::OM->Get('Kernel::System::Ticket::Article');
 
     # check needed stuff
     NEEDED:
@@ -58,21 +60,18 @@ sub Run {
     return 1 if !$Param{Data}->{TicketID};
     return 1 if $Param{Event} ne 'ArticleCreate';
 
-    # get article index
-    my @ArticleIndex = $TicketObject->ArticleIndex(
-        TicketID => $Param{Data}->{TicketID},
-    );
-
-    return 1 if !scalar @ArticleIndex;
-
     # get last article
-    my %Article = $TicketObject->ArticleGet(
-        ArticleID => $ArticleIndex[-1],
+    my @Articles = $ArticleObject->ArticleList(
+        TicketID => $Param{Data}->{TicketID},
+        OnlyLast => 1,
     );
 
-    return 1 if !%Article;
-    return 1 if $Article{SenderType} !~ /^(customer|agent)/;
-    return 1 if $Article{ArticleType} !~ /(extern|phone|fax|sms|webrequest)/;
+    my %ArticleSenderTypeList = $ArticleObject->ArticleSenderTypeList();
+    my $SenderType            = $ArticleSenderTypeList{ $Articles[0]->{SenderTypeID} };
+
+    return 1 if !scalar @Articles;
+    return 1 if $Articles[0]->{IsVisibleForCustomer} eq 0;
+    return 1 if $SenderType !~ /^(customer|agent)/;
 
     # remember sender type
     my $DynamicFieldConfigDirection = $DynamicFieldObject->DynamicFieldGet(
@@ -119,7 +118,7 @@ sub Run {
     my %PreviousState;
     if (
         scalar @UpdateHistory >= 2
-        && $Article{SenderType} eq 'customer'
+        && $SenderType eq 'customer'
         )
     {
         # extract previous history entry
@@ -134,7 +133,7 @@ sub Run {
     my $LastContactTime   = $Ticket{'TicketLastCustomerContactTime'}      || '';
     my $LastSender        = $Ticket{'TicketLastCustomerContactDirection'} || '';
     my $PreviousStateType = $PreviousState{TypeName}                      || '';
-    my $NewSender         = $Article{SenderType};
+    my $NewSender         = $SenderType;
     my $StateType         = $Ticket{StateType};
 
     if (
@@ -148,7 +147,7 @@ sub Run {
     }
 
     my $AricleCreatedSystemTime = $TimeObject->TimeStamp2SystemTime(
-        String => $Article{Created},
+        String => $Articles[0]->{CreateTime},
     );
 
     # remember sender time stamp
@@ -159,14 +158,14 @@ sub Run {
     my $Direction = $DynamicFieldBackendObject->ValueSet(
         DynamicFieldConfig => $DynamicFieldConfigDirection,
         ObjectID           => $Param{Data}->{TicketID},
-        Value              => $Article{SenderType},
+        Value              => $SenderType,
         UserID             => 1,
     );
 
     my $Time = $DynamicFieldBackendObject->ValueSet(
         DynamicFieldConfig => $DynamicFieldConfigTime,
         ObjectID           => $Param{Data}->{TicketID},
-        Value              => $Article{Created},
+        Value              => $Articles[0]->{CreateTime},
         UserID             => 1,
     );
 
