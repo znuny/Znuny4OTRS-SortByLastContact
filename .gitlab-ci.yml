@@ -14,7 +14,7 @@ stages:
 job_test_otrs_Znuny4OTRSSortByLastContact:
   stage: test
   script:
-    - su -c "perl /opt/otrs/bin/otrs.Console.pl Dev::UnitTest::Run --verbose --test Ticket/Event/TimeUpdate" -s /bin/bash otrs
+    - su -c "perl bin/otrs.Console.pl Dev::UnitTest::Run --verbose --test scripts/test/Ticket/Event/Znuny4OTRSSortByLastContact" -s /bin/bash otrs
 
 job_deploy_otrs_Znuny4OTRSSortByLastContact:
   stage: deploy
