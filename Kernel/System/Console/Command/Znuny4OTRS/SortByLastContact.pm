@@ -135,6 +135,8 @@ sub Run {
 
             last ARTICLES;
         }
+
+        # no GuardClause :)
     }
 
     $Self->Print("\n<green>Done.</green>\n");
