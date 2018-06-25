@@ -12,19 +12,19 @@ The dynamic field 'TicketLastCustomerContactTime' is added to the system during 
 To update the last contact time for existing tickes (prior package installation) execute this command as the otrs user: "bin/otrs.Console.pl Znuny::SortByLastContact".
 
 The dynamic field is added to this views:
-* Frontend::Agent::Ticket::ViewQueue
-* Frontend::Agent::Ticket::ViewLocked
-* Frontend::Agent::Ticket::ViewStatus
+* View by Queue - AgentTicketQueue
+* Lock view - AgentTicketLockedView
+* Vie by State - AgentTicketStatusView
 
 ## further adjustments
 
 In addition, the field "TicketLastCustomerContactTime" can be added as a column in the following views:
 
-Status View      => Frontend::Agent::Ticket::ViewStatus###DefaultColumns
-Queue View       => Frontend::Agent::Ticket::ViewQueue###DefaultColumns
-Responsible View => Frontend::Agent::Ticket::ViewResponsible###DefaultColumns
-Watch View       => Frontend::Agent::Ticket::ViewWatch###DefaultColumns
-Locked View      => Frontend::Agent::Ticket::ViewLocked###DefaultColumns
-Escalation View  => Frontend::Agent::Ticket::ViewEscalation###DefaultColumns
+Status View      => Ticket::Frontend::AgentTicketStatusView###DefaultColumns
+Queue View       => Ticket::Frontend::AgentTicketQueue###DefaultColumns
+Responsible View => Ticket::Frontend::AgentTicketResponsibleView###DefaultColumns
+Watch View       => Ticket::Frontend::AgentTicketWatchView###DefaultColumns
+Locked View      => Ticket::Frontend::AgentTicketLockedView###DefaultColumns
+Escalation View  => Ticket::Frontend::AgentTicketEscalationView###DefaultColumns
 
 In SysConfig add a row to the above mentioned configurations, with Key=DynamicField_TicketLastCustomerContactTime and Content=1.
