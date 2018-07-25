@@ -143,7 +143,7 @@ sub Run {
         && $PreviousStateType ne 'closed'
         )
     {
-        return 1
+        return 1;
     }
 
     my $AricleCreatedSystemTime = $TimeObject->TimeStamp2SystemTime(

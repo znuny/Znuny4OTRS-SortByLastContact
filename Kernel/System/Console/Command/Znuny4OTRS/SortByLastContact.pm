@@ -93,8 +93,7 @@ sub Run {
 
         # article loop
         ARTICLES:
-        for my $Article ( reverse sort { $a <=> $b } @Articles ) {
-
+        for my $Article ( reverse sort { $a->{ArticleID} <=> $b->{ArticleID} } @Articles ) {
             my $SenderType = $ArticleSenderTypeList{ $Article->{SenderTypeID} };
 
             next ARTICLES if $SenderType !~ /^(customer|agent)/;
