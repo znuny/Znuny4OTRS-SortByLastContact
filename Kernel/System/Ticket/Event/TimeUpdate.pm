@@ -1,6 +1,9 @@
 # --
-# Kernel/System/Ticket/Event/TimeUpdate.pm - time update event module
-# Copyright (C) 2014 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2019 Znuny GmbH, http://znuny.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
 package Kernel::System::Ticket::Event::TimeUpdate;
@@ -31,9 +34,12 @@ sub Run {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for (qw(Data Event Config)) {
-        if ( !$Param{$_} ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
+    for my $Needed (qw(Data Event Config)) {
+        if ( !$Param{$Needed} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Needed!"
+            );
             return;
         }
     }
@@ -54,7 +60,7 @@ sub Run {
     );
 
     return 1 if !%Article;
-    return 1 if $Article{SenderType}  !~ /^(customer|agent)/;
+    return 1 if $Article{SenderType} !~ /^(customer|agent)/;
     return 1 if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
 
     # remember sender type
@@ -103,7 +109,8 @@ sub Run {
     if (
         scalar @UpdateHistory >= 2
         && $Article{SenderType} eq 'customer'
-    ) {
+        )
+    {
         # extract previous history entry
         my %PreviousHistoryEntry = %{ $UpdateHistory[-2] };
 
@@ -113,19 +120,20 @@ sub Run {
         );
     }
 
-    my $LastContactTime   = $Ticket{ 'TicketLastCustomerContactTime' }      || '';
-    my $LastSender        = $Ticket{ 'TicketLastCustomerContactDirection' } || '';
-    my $PreviousStateType = $PreviousState{TypeName}                        || '';
+    my $LastContactTime   = $Ticket{'TicketLastCustomerContactTime'}      || '';
+    my $LastSender        = $Ticket{'TicketLastCustomerContactDirection'} || '';
+    my $PreviousStateType = $PreviousState{TypeName}                      || '';
     my $NewSender         = $Article{SenderType};
     my $StateType         = $Ticket{StateType};
 
     if (
-        $LastSender           eq 'customer'
-        && $NewSender         eq 'customer'
-        && $StateType         eq 'open'
+        $LastSender eq 'customer'
+        && $NewSender eq 'customer'
+        && $StateType eq 'open'
         && $PreviousStateType ne 'closed'
-    ) {
-        return 1
+        )
+    {
+        return 1;
     }
 
     my $AricleCreatedSystemTime = $Self->{TimeObject}->TimeStamp2SystemTime(

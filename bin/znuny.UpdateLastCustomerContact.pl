@@ -1,16 +1,30 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 # --
-# bin/znuny.UpdateLastCustomerContact.pl - update all tickets with last customer contact
-# Copyright (C) 2014 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2019 Znuny GmbH, http://znuny.com/
 # --
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU AFFERO General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+# or see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+use strict;
+use warnings;
 
 use File::Basename;
 use FindBin qw($RealBin);
 use lib dirname($RealBin);
 use lib dirname($RealBin) . '/Kernel/cpan-lib';
-
-use strict;
-use warnings;
 
 use Kernel::Config;
 use Kernel::System::Log;
@@ -29,20 +43,20 @@ $CommonObject{LogObject}    = Kernel::System::Log->new(
     LogPrefix => 'OTRS-znuny.UpdateLastCustomerContact.pl',
     %CommonObject
 );
-$CommonObject{MainObject}                = Kernel::System::Main->new( %CommonObject );
-$CommonObject{EncodeObject}              = Kernel::System::Encode->new( %CommonObject );
-$CommonObject{TimeObject}                = Kernel::System::Time->new( %CommonObject );
-$CommonObject{DBObject}                  = Kernel::System::DB->new( %CommonObject );
-$CommonObject{TicketObject}              = Kernel::System::Ticket->new( %CommonObject );
-$CommonObject{DynamicFieldObject}        = Kernel::System::DynamicField->new( %CommonObject );
-$CommonObject{DynamicFieldBackendObject} = Kernel::System::DynamicField::Backend->new( %CommonObject );
+$CommonObject{MainObject}                = Kernel::System::Main->new(%CommonObject);
+$CommonObject{EncodeObject}              = Kernel::System::Encode->new(%CommonObject);
+$CommonObject{TimeObject}                = Kernel::System::Time->new(%CommonObject);
+$CommonObject{DBObject}                  = Kernel::System::DB->new(%CommonObject);
+$CommonObject{TicketObject}              = Kernel::System::Ticket->new(%CommonObject);
+$CommonObject{DynamicFieldObject}        = Kernel::System::DynamicField->new(%CommonObject);
+$CommonObject{DynamicFieldBackendObject} = Kernel::System::DynamicField::Backend->new(%CommonObject);
 
 # get all open tickets
 $CommonObject{DBObject}->Prepare(
     SQL => "SELECT t.id FROM ticket t, ticket_state ts, ticket_state_type tst WHERE"
-          ." t.ticket_state_id = ts.id AND ts.type_id = tst.id AND tst.name IN"
-          ." ('new', 'open', 'pending reminder', 'pending auto')"
-  );
+        . " t.ticket_state_id = ts.id AND ts.type_id = tst.id AND tst.name IN"
+        . " ('new', 'open', 'pending reminder', 'pending auto')"
+);
 
 my @TicketIDs;
 while ( my @Row = $CommonObject{DBObject}->FetchrowArray() ) {
@@ -75,7 +89,7 @@ for my $TicketID ( sort { $a <=> $b } @TicketIDs ) {
         my %Article = $CommonObject{TicketObject}->ArticleGet( ArticleID => $ArticleID );
 
         next ARTICLES if !%Article;
-        next ARTICLES if $Article{SenderType}  !~ /^(customer|agent)/;
+        next ARTICLES if $Article{SenderType} !~ /^(customer|agent)/;
         next ARTICLES if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
 
         # update last customer update timestamp

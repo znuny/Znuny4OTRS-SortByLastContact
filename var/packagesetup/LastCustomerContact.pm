@@ -1,6 +1,9 @@
 # --
-# var/packagesetup/LastCustomerContact.pm
-# Copyright (C) 2014 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2019 Znuny GmbH, http://znuny.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
 package var::packagesetup::LastCustomerContact;
@@ -100,9 +103,9 @@ sub _CreateDynamicFields {
             'YearsInFuture' => 5,
             'YearsInPast'   => 5,
             'YearsPeriod'   => 0,
-            },
-        ValidID    => $ValidID,
-        UserID     => 1,
+        },
+        ValidID => $ValidID,
+        UserID  => 1,
     );
 
     if ($TicketLastCustomerContactTimeID) {
@@ -116,16 +119,17 @@ sub _CreateDynamicFields {
         FieldType  => 'Text',
         ObjectType => 'Ticket',
         Config     => {
-                          'DefaultValue' => '',
-                          'Link'         => ''
-                      }  ,
-        ValidID    => $ValidID,
-        UserID     => 1,
+            'DefaultValue' => '',
+            'Link'         => ''
+        },
+        ValidID => $ValidID,
+        UserID  => 1,
     );
 
-    if ($TicketLastCustomerContactDirection) {
-        $NextOrderNumber++;
-    }
+    return 1 if !$TicketLastCustomerContactDirection;
+
+    $NextOrderNumber++;
+
     return 1;
 }
 
