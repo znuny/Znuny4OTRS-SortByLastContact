@@ -1,9 +1,9 @@
-image: otrs4ci
+image: registry.znuny.com/znuny/docker-otrs4ci:latest
 
 stages:
   - deploy
 
-job_deploy_otrs_Znuny4OTRSSortByLastContact:
+deploy:
   stage: deploy
   script:
     - sh /sync_repo.sh git@github.com:znuny/Znuny4OTRS-SortByLastContact.git
