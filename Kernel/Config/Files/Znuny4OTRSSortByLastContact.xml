@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_config version="1.0" init="Config">
     <ConfigItem Name="Ticket::EventModulePost###SetLastCustomerContact" Required="0" Valid="1">
-        <Description Lang="en">Ticket event module to update last customer contact timestamp after article create action.</Description>
-        <Description Lang="de">Ticket Event Modul zum automatischen Setzen des Zeitstempels für den letzten Kunden-Kontakt nach Erstellung eines Artikels.</Description>
+        <Description Translatable="1">Ticket event module to update last customer contact timestamp after article create action.</Description>
         <Group>Ticket</Group>
         <SubGroup>Core::Ticket</SubGroup>
         <Setting>
@@ -13,8 +12,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Ticket::Frontend::AgentTicketQueue###SortBy::Default" Required="1" Valid="1">
-        <Description Lang="en">Default sort criteria for all queues displayed in the QueueView after sort by priority is done.</Description>
-        <Description Lang="de">Standard Sortierkriterium für alle Queues innerhalb der Queue-Ansicht nachdem nach der Priorität sortiert wurde.</Description>
+        <Description Translatable="1">Default sort criteria for all queues displayed in the QueueView after sort by priority is done.</Description>
         <Group>Ticket</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewQueue</SubGroup>
         <Setting>
@@ -29,8 +27,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Ticket::Frontend::AgentTicketStatusView###SortBy::Default" Required="1" Valid="1">
-        <Description Lang="en">Queue sort by default.</Description>
-        <Description Lang="de">Standard Sortierung der Queue.</Description>
+        <Description Translatable="1">Queue sort by default.</Description>
         <Group>Ticket</Group>
         <SubGroup>Frontend::Agent::Ticket::ViewStatus</SubGroup>
         <Setting>
