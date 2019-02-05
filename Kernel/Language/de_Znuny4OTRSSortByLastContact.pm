@@ -1,6 +1,5 @@
 # --
-# Kernel/Language/de_Znuny4OTRSSortByLastContact.pm - the German translation of the texts of Znuny4OTRSSortByLastContact
-# Copyright (C) 2012-2016 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2019 Znuny GmbH, http://znuny.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you

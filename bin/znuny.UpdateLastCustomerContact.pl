@@ -1,11 +1,21 @@
 #!/usr/bin/perl
 # --
-# bin/znuny.UpdateLastCustomerContact.pl - update all tickets with last customer contact
-# Copyright (C) 2012-2016 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2019 Znuny GmbH, http://znuny.com/
 # --
-# This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (AGPL). If you
-# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU AFFERO General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+# or see http://www.gnu.org/licenses/agpl.txt.
 # --
 
 use strict;
@@ -72,11 +82,13 @@ for my $TicketID ( sort { $a <=> $b } @TicketIDs ) {
         next ARTICLES if $Article{SenderType} !~ /^(customer|agent)/;
         next ARTICLES if $Article{ArticleType} !~ /(extern|phone|fax|sms)/;
 
+        my $SystemTime = $TimeObject->TimeStamp2SystemTime(
+            String => $Article{Created},
+        );
+
         # update last customer update timestamp
         my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = $TimeObject->SystemTime2Date(
-            SystemTime => $TimeObject->TimeStamp2SystemTime(
-                String => $Article{Created},
-            ),
+            SystemTime => $SystemTime
         );
 
         my $Direction = $DynamicFieldBackendObject->ValueSet(
