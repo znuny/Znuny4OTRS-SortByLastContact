@@ -34,7 +34,7 @@ Download the [latest version](https://addons.znuny.com/api/addon_repos/public/10
 
 **Commercial Support**
 
-For this extension and for OTRS in general visit [https://www.znuny.com](https://www.znuny.com). Looking forward to hear from you!
+For this add-on and for OTRS in general visit [www.znuny.com](https://www.znuny.com). Looking forward to hear from you!
 
 Enjoy!
 
