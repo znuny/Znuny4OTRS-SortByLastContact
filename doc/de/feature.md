@@ -1,4 +1,4 @@
-# Znuny4OTRS-SortByLastContact
+# Funktionalität
 
 Sortiert die Tickets in der Queue-Ansicht, Status-Ansicht und Gesperrt-Ansicht nach dem letzten Kontakt.
 

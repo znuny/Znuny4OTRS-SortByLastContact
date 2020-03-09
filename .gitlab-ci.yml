@@ -1,19 +1,12 @@
-image: registry.znuny.com/znuny/docker-otrs6ci:latest
+image: registry.znuny.com/znuny/internal/docker-otrs6ci:$OTRS_TAG
 
-services:
-  - name: registry.znuny.com/znuny/docker-mysql-utf8:latest
-    alias: mysql
+include:
+  - project: 'Znuny/Internal/Znuny'
+    file: '/templates/gitlab/.gitlab-ci-default.yml'
 
-stages:
-  - test
-  - deploy
-
-job_test_otrs_Znuny4OTRSSortByLastContact:
-  stage: test
-  script:
-    - su -c "perl /opt/otrs/bin/otrs.Console.pl Dev::UnitTest::Run --verbose --test scripts/test/Ticket/Event/Znuny4OTRSSortByLastContact" -s /bin/bash otrs
-
-job_deploy_otrs_Znuny4OTRSSortByLastContact:
-  stage: deploy
-  script:
-    - sh /sync_repo.sh git@github.com:znuny/Znuny4OTRS-SortByLastContact.git
+default:
+  before_script:
+    - /run.sh
+    - su -c "perl /opt/otrs/bin/otrs.Console.pl Znuny4OTRS::AdvancedPackageManager::InstallSOPM /opt/otrs/$CI_PROJECT_NAME.sopm" -s /bin/bash otrs
+  after_script:
+    - /unittest.sh
