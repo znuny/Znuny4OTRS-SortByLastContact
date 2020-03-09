@@ -1,5 +1,8 @@
 ![Znuny logo](https://www.znuny.com/assets/images/logo_small.png)
 
+
+![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/master)
+
 Znuny4OTRS-SortByLastContact
 ====================
 

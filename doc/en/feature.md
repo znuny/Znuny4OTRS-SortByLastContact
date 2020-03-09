@@ -1,4 +1,4 @@
-# Znuny4OTRS-SortByLastContact
+# Functionality
 
 Tickets in the Queue, Status and Locked view were sorted by the last contact.
 
