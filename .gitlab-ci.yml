@@ -2,7 +2,7 @@ image: registry.znuny.com/znuny/internal/docker-otrs6ci:$OTRS_TAG
 
 include:
   - project: 'Znuny/Internal/Znuny'
-    file: '/templates/gitlab/.gitlab-ci-default.yml'
+    file: '/templates/gitlab/default/.gitlab-ci-default.yml'
 
 default:
   before_script:
