@@ -1,9 +1,8 @@
 ![Znuny logo](https://www.znuny.com/assets/images/logo_small.png)
 
+![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/rel-6_2)
 
-![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/rel-6_0)
-
-Znuny4OTRS-SortByLastContact
+Znuny-SortByLastContact
 ====================
 
 Sort Queue view, Status view and Locked view by last contact.
@@ -23,17 +22,15 @@ Many thanks to Myhammer AG, which made this possible.
 
 **Installation**
 
-Download the [package](https://addons.znuny.com/api/addon_repos/public/1083/latest) and install it via admin interface -> package manager or use [Znuny4OTRS-Repo](https://www.znuny.com/add-ons/znuny4otrs-repository).
-
+Download the [package](https://addons.znuny.com/api/addon_repos/public/2102/latest) and install it via admin interface -> package manager.
 
 **Prerequisites**
 
-- OTRS 6
-- [Znuny4OTRS-Repo](https://www.znuny.com/add-ons/znuny4otrs-repository)
+- OTRS 6.2
 
 **Download**
 
-Download the [latest version](https://addons.znuny.com/api/addon_repos/public/1083/latest).
+Download the [latest version](https://addons.znuny.com/api/addon_repos/public/2102/latest).
 
 **Commercial Support**
 
