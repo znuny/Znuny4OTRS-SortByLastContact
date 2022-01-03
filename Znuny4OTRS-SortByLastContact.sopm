@@ -8,10 +8,12 @@
     <Description Lang="en">Ticket sort order by last customer contact.</Description>
     <Description Lang="de">Ticket Sortierung nach letztem Kundenkontakt.</Description>
     <Framework>3.0.x</Framework>
+    <PackageRequired Version="3.0.1">Znuny4OTRS-Repo</PackageRequired>
     <Filelist>
-        <File Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml" Permission="644"/>
-        <File Location="Kernel/System/Ticket/Event/TimeUpdate.pm" Permission="644"/>
-        <File Location="scripts/updatelastcustomercontact.pl" Permission="755"/>
+        <File Permission="644" Location="build/Znuny4OTRS-SortByLastContact-2.1.1.opm"/>
+        <File Permission="644" Location="Kernel/Config/Files/Znuny4OTRSSortByLastContact.xml"/>
+        <File Permission="644" Location="Kernel/System/Ticket/Event/TimeUpdate.pm"/>
+        <File Permission="755" Location="scripts/updatelastcustomercontact.pl"/>
     </Filelist>
     <DatabaseInstall>
         <TableCreate Name="ticket_article_response">
@@ -35,5 +37,3 @@
         <TableDrop Name="ticket_article_response"/>
     </DatabaseUninstall>
 </otrs_package>
-
-

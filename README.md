@@ -1,6 +1,6 @@
 Sort by last Contact
 ====================
-Sort QueueView, StatusView and LockedView by last contact. 
+Sort QueueView, StatusView and LockedView by last contact.
 
 Just install the package and the feature will be enabled automatically.
 
@@ -15,14 +15,13 @@ Prerequisites
 
 Download
 ========
-For download see http://znuny.com/d/
+For download see https://www.znuny.com/d/
 
 Commercial Support
 ==================
-For this extention and for OTRS in gerneral visit http://znuny.com. Looking forward to hear from you!
+For this extention and for OTRS in gerneral visit https://www.znuny.com. Looking forward to hear from you!
 
 Enjoy!
 
  Your Znuny Team!
- http://znuny.com
-
+ https://www.znuny.com
