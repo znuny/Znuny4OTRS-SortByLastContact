@@ -1,9 +1,9 @@
-image: registry.znuny.com/znuny/docker-otrs4ci:latest
+image: registry.znuny.com/znuny/internal/docker-otrs4ci:latest
 
-stages:
-  - deploy
+include:
+  - project: 'Znuny/Internal/Znuny'
+    file: '/templates/gitlab/default/default.yml'
 
-deploy:
-  stage: deploy
-  script:
-    - sh /sync_repo.sh git@github.com:znuny/Znuny4OTRS-SortByLastContact.git
+default:
+  before_script:
+    - /run.sh
