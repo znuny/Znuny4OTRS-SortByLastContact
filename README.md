@@ -1,6 +1,6 @@
 ![Znuny logo](https://www.znuny.com/assets/images/logo_small.png)
 
-![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/rel-6_2)
+![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/dev)
 
 Znuny-SortByLastContact
 ====================
@@ -26,7 +26,7 @@ Download the [package](https://addons.znuny.com/api/addon_repos/public/2102/late
 
 **Prerequisites**
 
-- OTRS 6.2
+- Znuny 6.2
 
 **Download**
 
@@ -34,7 +34,7 @@ Download the [latest version](https://addons.znuny.com/api/addon_repos/public/21
 
 **Commercial Support**
 
-For this add-on and for OTRS in general visit [www.znuny.com](https://www.znuny.com). Looking forward to hear from you!
+For this add-on and for Znuny in general visit [www.znuny.com](https://www.znuny.com). Looking forward to hear from you!
 
 Enjoy!
 
