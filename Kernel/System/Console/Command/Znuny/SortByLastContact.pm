@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::System::Console::Command::Znuny4OTRS::SortByLastContact;
+package Kernel::System::Console::Command::Znuny::SortByLastContact;
 
 use strict;
 use warnings;
@@ -18,7 +18,7 @@ our @ObjectDependencies = (
     'Kernel::System::DynamicField::Backend',
     'Kernel::System::Ticket',
     'Kernel::System::Ticket::Article',
-    'Kernel::System::ZnunyTime',
+    'Kernel::System::Time',
 );
 
 sub Configure {
@@ -43,7 +43,7 @@ sub Run {
 
     my $DynamicFieldObject        = $Kernel::OM->Get('Kernel::System::DynamicField');
     my $TicketObject              = $Kernel::OM->Get('Kernel::System::Ticket');
-    my $TimeObject                = $Kernel::OM->Get('Kernel::System::ZnunyTime');
+    my $TimeObject                = $Kernel::OM->Get('Kernel::System::Time');
     my $DynamicFieldBackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
     my $ArticleObject             = $Kernel::OM->Get('Kernel::System::Ticket::Article');
 

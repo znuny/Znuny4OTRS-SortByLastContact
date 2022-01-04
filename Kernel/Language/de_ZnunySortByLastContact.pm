@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Language::de_Znuny4OTRSSortByLastContact;
+package Kernel::Language::de_ZnunySortByLastContact;
 
 use strict;
 use warnings;
