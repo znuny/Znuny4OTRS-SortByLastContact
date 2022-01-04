@@ -20,7 +20,7 @@ our @ObjectDependencies = (
     'Kernel::System::State',
     'Kernel::System::Ticket',
     'Kernel::System::Ticket::Article',
-    'Kernel::System::ZnunyTime',
+    'Kernel::System::Time',
 );
 
 sub new {
@@ -41,7 +41,7 @@ sub Run {
     my $LogObject                 = $Kernel::OM->Get('Kernel::System::Log');
     my $StateObject               = $Kernel::OM->Get('Kernel::System::State');
     my $TicketObject              = $Kernel::OM->Get('Kernel::System::Ticket');
-    my $TimeObject                = $Kernel::OM->Get('Kernel::System::ZnunyTime');
+    my $TimeObject                = $Kernel::OM->Get('Kernel::System::Time');
     my $ArticleObject             = $Kernel::OM->Get('Kernel::System::Ticket::Article');
 
     # check needed stuff
