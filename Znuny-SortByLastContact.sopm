@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_package version="1.1">
     <Name>Znuny-SortByLastContact</Name>
-    <Version>6.0.4</Version>
+    <Version>6.1.1</Version>
+    <ChangeLog Version="6.1.1" Date="2022-01-04 11:58:26 +0100">Ported to OTRS 6.1.</ChangeLog>
     <ChangeLog Version="6.0.4" Date="2021-02-12 17:45:56 +0100">Happy new year. Tidied code.</ChangeLog>
     <ChangeLog Version="6.0.3" Date="2020-09-02 08:36:36 +0200">Updated README.md and tidied code.</ChangeLog>
     <ChangeLog Version="6.0.2" Date="2018-07-25 17:04:29 +0200">Fixed update of last contact date in console command.</ChangeLog>
@@ -68,5 +69,5 @@
         $ZnunyHelperObject->_DynamicFieldsDelete( @DynamicFieldRemove );
 
     ]]></CodeUninstall>
-    <PackageMerge Name="Znuny4OTRS-SortByLastContact" TargetVersion="6.0.4"></PackageMerge>
+    <PackageMerge Name="Znuny4OTRS-SortByLastContact" TargetVersion="6.0.4"/>
 </otrs_package>
