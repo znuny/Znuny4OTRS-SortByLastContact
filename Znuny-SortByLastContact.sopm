@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_package version="1.1">
     <Name>Znuny-SortByLastContact</Name>
-    <Version>6.1.1</Version>
+    <Version>6.2.1</Version>
+    <ChangeLog Version="6.2.1" Date="2022-01-04 11:58:45 +0100">Ported to OTRS 6.2.</ChangeLog>
     <ChangeLog Version="6.1.1" Date="2022-01-04 11:58:26 +0100">Ported to OTRS 6.1.</ChangeLog>
     <ChangeLog Version="6.0.4" Date="2021-02-12 17:45:56 +0100">Happy new year. Tidied code.</ChangeLog>
     <ChangeLog Version="6.0.3" Date="2020-09-02 08:36:36 +0200">Updated README.md and tidied code.</ChangeLog>
@@ -10,7 +11,7 @@
     <ChangeLog Version="5.0.1" Date="2016-07-26 11:44:49 +0200">Fixed issue #11 - Customer webrequests are not counted.</ChangeLog>
     <ChangeLog Version="3.3.1" Date="2015-11-11 13:59:47 UTC">Added InternalField to protect dynamic fields.</ChangeLog>
     <ChangeLog Version="3.3.0" Date="2015-11-10 22:42:20 UTC">Initial release for OTRS 5.</ChangeLog>
-    <Framework>6.1.x</Framework>
+    <Framework>6.2.x</Framework>
     <Vendor>Znuny GmbH</Vendor>
     <URL>http://znuny.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
@@ -69,5 +70,5 @@
         $ZnunyHelperObject->_DynamicFieldsDelete( @DynamicFieldRemove );
 
     ]]></CodeUninstall>
-    <PackageMerge Name="Znuny4OTRS-SortByLastContact" TargetVersion="6.0.4"></PackageMerge>
+    <PackageMerge Name="Znuny4OTRS-SortByLastContact" TargetVersion="6.0.4"/>
 </otrs_package>
