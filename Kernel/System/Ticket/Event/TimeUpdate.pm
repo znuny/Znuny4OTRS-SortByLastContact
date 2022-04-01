@@ -26,7 +26,6 @@ our @ObjectDependencies = (
 sub new {
     my ( $Type, %Param ) = @_;
 
-    # allocate new hash for object
     my $Self = {};
     bless( $Self, $Type );
 
@@ -44,7 +43,6 @@ sub Run {
     my $TimeObject                = $Kernel::OM->Get('Kernel::System::Time');
     my $ArticleObject             = $Kernel::OM->Get('Kernel::System::Ticket::Article');
 
-    # check needed stuff
     NEEDED:
     for my $Needed (qw(Data Event Config)) {
 
