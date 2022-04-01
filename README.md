@@ -1,6 +1,6 @@
 ![Znuny logo](https://www.znuny.com/assets/images/logo_small.png)
 
-![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/rel-6_1)
+![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/rel-6_3)
 
 Znuny-SortByLastContact
 ====================
@@ -22,16 +22,15 @@ Many thanks to Myhammer AG, which made this possible.
 
 **Installation**
 
-
-Download the [package](https://addons.znuny.com/api/addon_repos/public/2102/latest) and install it via admin interface -> package manager.
+Download the [package](https://addons.znuny.com/api/addon_repos/public/2245/latest) and install it via admin interface -> package manager.
 
 **Prerequisites**
 
-- Znuny 6.1
+- Znuny 6.3
 
 **Download**
 
-Download the [latest version](https://addons.znuny.com/api/addon_repos/public/2102/latest).
+Download the [latest version](https://addons.znuny.com/api/addon_repos/public/2245/latest).
 
 **Commercial Support**
 
