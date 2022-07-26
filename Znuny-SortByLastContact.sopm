@@ -12,7 +12,7 @@
     <ChangeLog Version="5.0.1" Date="2016-07-26 11:44:49 +0200">Fixed issue #11 - Customer webrequests are not counted.</ChangeLog>
     <ChangeLog Version="3.3.1" Date="2015-11-11 13:59:47 UTC">Added InternalField to protect dynamic fields.</ChangeLog>
     <ChangeLog Version="3.3.0" Date="2015-11-10 22:42:20 UTC">Initial release for OTRS 5.</ChangeLog>
-    <Framework>6.3.x</Framework>
+    <Framework>6.4.x</Framework>
     <Vendor>Znuny GmbH</Vendor>
     <URL>http://znuny.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
