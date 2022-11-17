@@ -22,15 +22,15 @@ Many thanks to Myhammer AG, which made this possible.
 
 **Installation**
 
-Download the [package](https://addons.znuny.com/api/addon_repos/public/2245/latest) and install it via admin interface -> package manager.
+Download the [package](https://addons.znuny.com/api/addon_repos/public/2373/latest) and install it via admin interface -> package manager.
 
 **Prerequisites**
 
-- Znuny 6.3
+- Znuny 6.4
 
 **Download**
 
-Download the [latest version](https://addons.znuny.com/api/addon_repos/public/2245/latest).
+Download the [latest version](https://addons.znuny.com/api/addon_repos/public/2373/latest).
 
 **Commercial Support**
 
