@@ -1,24 +1,24 @@
 ![Znuny logo](https://www.znuny.com/assets/images/logo_small.png)
 
-![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/rel-6_3)
+![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-SortByLastContact/rel-6_4)
 
 Znuny-SortByLastContact
-====================
+=======================
 
-Sort Queue view, Status view and Locked view by last contact.
+Sort queue view, status view and locked view by last contact.
 
 Just install the package and the feature will be enabled automatically.
 
 **Feature List**
 
-The package adds a Dynamic Field named *TicketLastCustomerContactTime* to store the values.
-To update the last contact time for all existing ticket after the installation, execute `bin/otrs.Console.pl Znuny::SortByLastContact`.
-This field is set as Default value in:
+The package adds a dynamic field named *TicketLastCustomerContactTime* to store the values.
+To update the last contact time for all existing tickets after the installation, execute `bin/otrs.Console.pl Znuny::SortByLastContact`.
+This field is set as default value in:
 * Frontend::Agent::Ticket::ViewQueue
 * Frontend::Agent::Ticket::ViewLocked
 * Frontend::Agent::Ticket::ViewStatus
 
-Many thanks to Myhammer AG, which made this possible.
+Many thanks to Myhammer AG which made this possible.
 
 **Installation**
 
