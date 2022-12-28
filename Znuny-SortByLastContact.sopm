@@ -24,53 +24,17 @@
         <File Permission="660" Location="Kernel/Language/de_ZnunySortByLastContact.pm"/>
         <File Permission="660" Location="Kernel/System/Console/Command/Znuny/SortByLastContact.pm"/>
         <File Permission="660" Location="Kernel/System/Ticket/Event/TimeUpdate.pm"/>
+        <File Permission="660" Location="var/packagesetup/ZnunySortByLastContact.pm"/>
         <File Permission="660" Location="scripts/test/ZnunySortByLastContact/System/Ticket/Event/TimeUpdate.t"/>
     </Filelist>
     <CodeInstall Type="post"><![CDATA[
-
-        my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
-
-        # This function creates all dynamic fields that are necessary.
-        my @DynamicFields = (
-            {
-                Name       => 'TicketLastCustomerContactTime',
-                Label      => "TicketLastCustomerContactTime",
-                ObjectType => 'Ticket',
-                FieldType  => 'DateTime',
-                Config     => {
-                    'DefaultValue'  => 0,
-                    'Link'          => '',
-                    'YearsInFuture' => 5,
-                    'YearsInPast'   => 5,
-                    'YearsPeriod'   => 0,
-                },
-            },
-            {
-                Name       => 'TicketLastCustomerContactDirection',
-                Label      => "TicketLastCustomerContactDirection",
-                ObjectType => 'Ticket',
-                FieldType  => 'Text',
-                Config     => {
-                    'DefaultValue' => '',
-                    'Link'         => ''
-                },
-            },
-        );
-
-        my $Result = $ZnunyHelperObject->_DynamicFieldsCreateIfNotExists( @DynamicFields );
-
+        $Kernel::OM->Get('var::packagesetup::ZnunySortByLastContact')->CodeInstall();
     ]]></CodeInstall>
+    <CodeUpgrade Type="post"><![CDATA[
+        $Kernel::OM->Get('var::packagesetup::ZnunySortByLastContact')->CodeUpgrade();
+    ]]></CodeUpgrade>
     <CodeUninstall Type="post"><![CDATA[
-
-        my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
-
-        my @DynamicFieldRemove = (
-            'TicketLastCustomerContactTime',
-            'TicketLastCustomerContactDirection'
-        );
-
-        $ZnunyHelperObject->_DynamicFieldsDelete( @DynamicFieldRemove );
-
+        $Kernel::OM->Get('var::packagesetup::ZnunySortByLastContact')->CodeUninstall();
     ]]></CodeUninstall>
-    <PackageMerge Name="Znuny4OTRS-SortByLastContact" TargetVersion="6.0.4"/>
+    <PackageMerge Name="Znuny4OTRS-SortByLastContact" TargetVersion="6.1.0"/>
 </otrs_package>
