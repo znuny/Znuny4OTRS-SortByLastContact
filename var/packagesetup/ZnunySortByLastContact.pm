@@ -10,7 +10,6 @@ package var::packagesetup::ZnunySortByLastContact;    ## no critic
 
 use strict;
 use warnings;
-
 use utf8;
 
 our @ObjectDependencies = (

@@ -10,6 +10,7 @@ package Kernel::System::Console::Command::Znuny::SortByLastContact;
 
 use strict;
 use warnings;
+use utf8;
 
 use parent qw(Kernel::System::Console::BaseCommand);
 
