@@ -10,6 +10,7 @@ package Kernel::System::Ticket::Event::TimeUpdate;
 
 use strict;
 use warnings;
+use utf8;
 
 use Kernel::System::VariableCheck qw(:all);
 

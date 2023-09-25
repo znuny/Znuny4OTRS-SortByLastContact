@@ -9,7 +9,7 @@ Installieren Sie einfach das Paket und die Funktion wird automatisch aktiviert.
 
 Währen der Installation wird das dynamisches Feld "TicketLastCustomerContactTime" zur Speicherung der Zeit erstellt.
 
-Um die letzte Kontaktzeit (TicketLastCustomerContactTime) für alle bestehenden Tickets zu aktualisieren, führen Sie bitte das "bin/otrs.Console.pl Znuny::SortByLastContact" Skript als OTRS User aus.
+Um die letzte Kontaktzeit (TicketLastCustomerContactTime) für alle bestehenden Tickets zu aktualisieren, führen Sie bitte das "bin/znuny.Console.pl Znuny::SortByLastContact" Skript als Znuny User aus.
 
 Dieses Feld wird als Standardwert in folgenden Ansichten gesetzt:
 * Ansicht nach Queue - AgentTicketQueue
