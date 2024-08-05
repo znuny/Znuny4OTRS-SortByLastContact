@@ -87,7 +87,7 @@ sub CodeInstall {
         },
     );
 
-    $ZnunyHelperObject->_DynamicFieldsCreateIfNotExists(@DynamicFields);
+    return if !$ZnunyHelperObject->_DynamicFieldsCreateIfNotExists(@DynamicFields);
 
     return 1;
 }
@@ -110,7 +110,7 @@ sub CodeUninstall {
         'TicketLastCustomerContactDirection'
     );
 
-    $ZnunyHelperObject->_DynamicFieldsDelete(@DynamicFieldRemove);
+    return if !$ZnunyHelperObject->_DynamicFieldsDelete(@DynamicFieldRemove);
 
     return 1;
 }

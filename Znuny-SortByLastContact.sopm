@@ -2,12 +2,12 @@
 <otrs_package version="1.1">
     <Name>Znuny-SortByLastContact</Name>
     <Version>7.0.1</Version>
-    <Framework>7.0.x</Framework>
+    <Framework>7.1.x</Framework>
     <Vendor>Znuny GmbH</Vendor>
     <URL>https://znuny.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
-    <Description Lang="en">Ticket sort order by last customer contact.</Description>
-    <Description Lang="de">Ticket Sortierung nach letztem Kundenkontakt.</Description>
+    <Description Lang="en">Sorts tickets by last customer contact in certain views.</Description>
+    <Description Lang="de">Sortiert Tickets nach letztem Kundenkontakt in bestimmten Ansichten.</Description>
     <ChangeLog Version="7.0.1" Date="2023-09-27 18:52:54 +0200">Initial release for Znuny 7.0</ChangeLog>
     <ChangeLog Version="6.5.1" Date="2023-02-20 13:18:34 +0100">Ported to 6.5.</ChangeLog>
     <ChangeLog Version="6.4.2" Date="2022-12-28 16:21:14 +0100">Changed dynamic field type for direction from Text to Dropdown.</ChangeLog>
