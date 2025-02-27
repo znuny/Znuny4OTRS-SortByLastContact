@@ -35,7 +35,7 @@
     <CodeUpgrade Type="post"><![CDATA[
         $Kernel::OM->Get('var::packagesetup::ZnunySortByLastContact')->CodeUpgrade();
     ]]></CodeUpgrade>
-    <CodeUninstall Type="post"><![CDATA[
+    <CodeUninstall Type="pre"><![CDATA[
         $Kernel::OM->Get('var::packagesetup::ZnunySortByLastContact')->CodeUninstall();
     ]]></CodeUninstall>
     <PackageMerge Name="Znuny4OTRS-SortByLastContact" TargetVersion="6.1.0"/>
