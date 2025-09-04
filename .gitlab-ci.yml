@@ -1,8 +1,5 @@
-image: registry.znuny.com/znuny/internal/docker-znuny-ci:6.1.2
-include:
-  - project: 'Znuny/Internal/Znuny'
-    file: '/templates/gitlab/default/default.yml'
+image: registry.znuny.com/znuny/internal/docker-znuny-ci:6.1
 
-default:
-  before_script:
-    - /run.sh
+include:
+  - project: $INCLUDE_PROJECT
+    file: '/templates/gitlab/default/default.yml'
