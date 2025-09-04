@@ -2,13 +2,6 @@
 <otrs_package version="1.1">
     <Name>Znuny4OTRS-SortByLastContact</Name>
     <Version>6.0.4</Version>
-    <ChangeLog Version="6.0.4" Date="2021-02-12 17:45:56 +0100">Happy new year. Tidied code.</ChangeLog>
-    <ChangeLog Version="6.0.3" Date="2020-09-02 08:36:36 +0200">Updated README.md and tidied code.</ChangeLog>
-    <ChangeLog Version="6.0.2" Date="2018-07-25 17:04:29 +0200">Fixed update of last contact date in console command.</ChangeLog>
-    <ChangeLog Version="6.0.1" Date="2017-11-14 12:07:54 +0100">Ported to 6.0</ChangeLog>
-    <ChangeLog Version="5.0.1" Date="2016-07-26 11:44:49 +0200">Fixed issue #11 - Customer webrequests are not counted.</ChangeLog>
-    <ChangeLog Version="3.3.1" Date="2015-11-11 13:59:47 UTC">Added InternalField to protect dynamic fields.</ChangeLog>
-    <ChangeLog Version="3.3.0" Date="2015-11-10 22:42:20 UTC">Initial release for OTRS 5.</ChangeLog>
     <Framework>6.0.x</Framework>
     <PackageRequired Version="6.0.76">Znuny4OTRS-Repo</PackageRequired>
     <Vendor>Znuny GmbH</Vendor>
@@ -16,6 +9,13 @@
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">Ticket sort order by last customer contact.</Description>
     <Description Lang="de">Ticket Sortierung nach letztem Kundenkontakt.</Description>
+    <ChangeLog Version="6.0.4" Date="2021-02-12 17:45:56 +0100">Happy new year. Tidied code.</ChangeLog>
+    <ChangeLog Version="6.0.3" Date="2020-09-02 08:36:36 +0200">Updated README.md and tidied code.</ChangeLog>
+    <ChangeLog Version="6.0.2" Date="2018-07-25 17:04:29 +0200">Fixed update of last contact date in console command.</ChangeLog>
+    <ChangeLog Version="6.0.1" Date="2017-11-14 12:07:54 +0100">Ported to 6.0</ChangeLog>
+    <ChangeLog Version="5.0.1" Date="2016-07-26 11:44:49 +0200">Fixed issue #11 - Customer webrequests are not counted.</ChangeLog>
+    <ChangeLog Version="3.3.1" Date="2015-11-11 13:59:47 UTC">Added InternalField to protect dynamic fields.</ChangeLog>
+    <ChangeLog Version="3.3.0" Date="2015-11-10 22:42:20 UTC">Initial release for OTRS 5.</ChangeLog>
     <Filelist>
         <File Permission="660" Location="Kernel/Config/Files/XML/Znuny4OTRSSortByLastContact.xml"/>
         <File Permission="660" Location="Kernel/Language/de_Znuny4OTRSSortByLastContact.pm"/>
