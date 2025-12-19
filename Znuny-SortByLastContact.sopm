@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_package version="1.1">
     <Name>Znuny-SortByLastContact</Name>
-    <Version>7.2.1</Version>
+    <Version>7.3.1</Version>
     <Framework>7.3.x</Framework>
     <Vendor>Znuny GmbH</Vendor>
     <URL>https://znuny.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">Sorts tickets by last customer contact in certain views.</Description>
     <Description Lang="de">Sortiert Tickets nach letztem Kundenkontakt in bestimmten Ansichten.</Description>
+    <ChangeLog Version="7.3.1" Date="2025-12-19 22:25:39 +0100">Initial release for Znuny 7.3.</ChangeLog>
     <ChangeLog Version="7.2.1" Date="2025-09-04 12:17:39 +0200">Initial release for Znuny 7.2.</ChangeLog>
     <ChangeLog Version="7.1.2" Date="2025-02-27 22:33:16 +0100">InternalField flag has been added for dynamic fields as well as for upgrades of existing fields.</ChangeLog>
     <ChangeLog Version="7.1.1" Date="2024-08-29 16:46:11 +0200">Initial release for Znuny 7.1.</ChangeLog>
